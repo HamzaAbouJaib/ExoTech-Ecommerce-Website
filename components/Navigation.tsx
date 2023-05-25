@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const Navigation = () => {
   return (
-    <div className="fixed bg-slate-800 w-full p-6 text-white">
+    <div className="fixed bg-slate-900 w-full p-6 text-white shadow-md">
       <div className="w-[80%] flex justify-between items-center m-auto">
         <div className="text-2xl">Tech Store</div>
         <div className="text-xl flex items-center gap-10">
