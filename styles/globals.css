@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.nav-link {
+  @apply hover:text-slate-300 hover:scale-95 duration-500;
+}
