@@ -43,7 +43,7 @@ const Navigation = () => {
         </div>
         <div className="text-xl flex items-end gap-4">
           <Link href={"/cart"} className="relative">
-            <span className="bg-red-600 text-center w-5 h-5 text-base font-semibold rounded-[50%] leading-none absolute -top-2 left-3">
+            <span className="bg-red-600 flex justify-center items-center w-5 h-5 text-base font-semibold rounded-[50%] leading-none absolute -top-2 left-3">
               0
             </span>
             <svg
