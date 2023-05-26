@@ -9,7 +9,7 @@ export default function products({ products }: { products: ProductType[] }) {
     <>
       <Navigation />
       <div className="w-[80%] m-auto mb-10 pt-20">
-        <ProductsGrid title={"All Products"} recentProducts={products} />
+        <ProductsGrid title={"All Products"} products={products} />
       </div>
     </>
   );

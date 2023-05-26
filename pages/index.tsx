@@ -19,7 +19,7 @@ export default function Home({
       <LandingPage />
       <div className="w-[80%] m-auto mb-10">
         <TodaysDeals newDeals={newDeals} />
-        <ProductsGrid title={"New Arrivals"} recentProducts={recentProducts} />
+        <ProductsGrid title={"New Arrivals"} products={recentProducts} />
       </div>
     </>
   );
