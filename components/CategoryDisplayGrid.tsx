@@ -16,9 +16,29 @@ const CategoryDisplayGrid = ({
 }: CategoryDisplayGridType) => {
   return (
     <div className="mt-20">
-      <div>
+      <div className="flex justify-between">
         <h1 className="text-3xl font-semibold mb-7">{category?.name}</h1>
-        {!link && <div>{}</div>}
+        {!link && (
+          <div className="flex gap-5">
+            {category?.properties.map((p) => (
+              <div className="bg-gray-100 flex items-center h-max px-6 py-2 gap-5 text-lg rounded-lg">
+                <label className="">{p.name}:</label>
+                <select
+                  className="bg-gray-100"
+                  // value={properties[p.name]}
+                  // make it change the property at the right index
+                  // onChange={(e) =>
+                  //   setProductProperty(p.name, e.target.value)
+                  // }
+                >
+                  {p.values.map((value: string) => (
+                    <option className="w-40" value={value}>{value}</option>
+                  ))}
+                </select>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
       <div className="grid grid-cols-4 gap-10">
         {products.slice(0, 2).map((product) => (
