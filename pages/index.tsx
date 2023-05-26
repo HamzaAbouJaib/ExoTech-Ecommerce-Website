@@ -1,6 +1,6 @@
 import LandingPage from "@/components/LandingPage";
 import Navigation from "@/components/Navigation";
-import RecentProducts from "@/components/RecentProducts";
+import ProductsGrid from "@/components/RecentProducts";
 import TodaysDeals from "@/components/TodaysDeals";
 import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/models/Product";
@@ -19,7 +19,7 @@ export default function Home({
       <LandingPage />
       <div className="w-[80%] m-auto mb-10">
         <TodaysDeals newDeals={newDeals} />
-        <RecentProducts recentProducts={recentProducts} />
+        <ProductsGrid title={"New Arrivals"} recentProducts={recentProducts} />
       </div>
     </>
   );
