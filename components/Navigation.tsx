@@ -15,7 +15,7 @@ const Navigation = () => {
           <Link className="nav-link" href={"/categories"}>
             Categories
           </Link>
-          <Link className="nav-link" href={"/deals"}>
+          <Link className="nav-link" href={"/hot-deals"}>
             Hot Deals
           </Link>
           <div className="relative">
