@@ -16,7 +16,7 @@ const Navigation = () => {
             Categories
           </Link>
           <Link className="nav-link" href={"/deals"}>
-            Deals
+            Hot Deals
           </Link>
           <div className="relative">
             <svg
@@ -37,7 +37,7 @@ const Navigation = () => {
             <input
               type="text"
               placeholder="Enter your keywords..."
-              className="pl-10 pr-4 py-1 rounded-[2rem] text-lg"
+              className="pl-10 pr-4 py-1 rounded-[2rem] text-lg w-[300px]"
             />
           </div>
         </div>
