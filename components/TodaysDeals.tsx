@@ -1,10 +1,17 @@
+import ProductType from "@/types/ProductType";
 import ProductCard from "./ProductCard";
 
-const TodaysDeals = () => {
+const TodaysDeals = ({ newDeals }: { newDeals: ProductType[] }) => {
   return (
     <div className="mt-20">
-      <h1 className="text-3xl font-semibold mb-7">Todays Best Deals For You!</h1>
-      <ProductCard />
+      <h1 className="text-3xl font-semibold mb-7">
+        Todays Best Deals For You!
+      </h1>
+      <div>
+        {newDeals.map((deal) => (
+          <ProductCard {...deal} />
+        ))}
+      </div>
     </div>
   );
 };
