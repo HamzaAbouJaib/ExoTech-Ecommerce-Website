@@ -21,7 +21,7 @@ export default function categories({
             return (
               <CategoryDisplayGrid
                 title={categoryProduct?.category?.name}
-                link="/"
+                link={"/categories/" + categoryProduct?.category._id}
                 products={categoryProduct?.products}
               />
             );
