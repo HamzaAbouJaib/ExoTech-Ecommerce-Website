@@ -1,17 +1,25 @@
 import LandingPage from "@/components/LandingPage";
 import Navigation from "@/components/Navigation";
+import RecentProducts from "@/components/RecentProducts";
 import TodaysDeals from "@/components/TodaysDeals";
 import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/models/Product";
 import ProductType from "@/types/ProductType";
 
-export default function Home({ newDeals }: { newDeals: ProductType[] }) {
+export default function Home({
+  newDeals,
+  recentProducts,
+}: {
+  newDeals: ProductType[];
+  recentProducts: ProductType[];
+}) {
   return (
     <>
       <Navigation />
       <LandingPage />
       <div className="w-[80%] m-auto mb-10">
         <TodaysDeals newDeals={newDeals} />
+        <RecentProducts recentProducts={recentProducts} />
       </div>
     </>
   );
@@ -23,9 +31,14 @@ export async function getServerSideProps() {
     sort: { _id: -1 },
     limit: 3,
   });
+  const recentProducts = await Product.find({}, null, {
+    sort: { _id: -1 },
+    limit: 6,
+  });
   return {
     props: {
       newDeals: JSON.parse(JSON.stringify(newDeals)),
+      recentProducts: JSON.parse(JSON.stringify(recentProducts)),
     },
   };
 }
