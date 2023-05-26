@@ -5,7 +5,7 @@ import CardPrice from "./CardPrice";
 
 const ProductCard = ({ name, brand, price, images, discount }: ProductType) => {
   return (
-    <div className="flex flex-col justify-between bg-opacity-50 rounded-[1.5rem] hover:bg-transparent hover:border-gray-900 hover:border-opacity-75 transition-all duration-500 ease-in-out">
+    <div className="flex flex-col justify-between">
       <div className="pb-5 flex flex-col gap-3">
         <Link
           href={"/"}
