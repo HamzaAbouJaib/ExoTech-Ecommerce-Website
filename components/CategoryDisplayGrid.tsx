@@ -16,13 +16,13 @@ const CategoryDisplayGrid = ({
   return (
     <div className="mt-20">
       <h1 className="text-3xl font-semibold mb-7">{title}</h1>
-      <div className="grid grid-cols-3 gap-10">
+      <div className="grid grid-cols-4 gap-10">
         {products.slice(0, 2).map((product) => (
           <ProductCard {...product} />
         ))}
         <Link
           href={"/"}
-          className="bg-slate-200 w-[500px] text-3xl font-semibold flex justify-center items-center gap-2 rounded-[1.5rem] hover:bg-slate-300 duration-500"
+          className="bg-slate-200 text-3xl font-semibold flex justify-center items-center gap-2 rounded-[1.5rem] hover:bg-slate-300 duration-500"
         >
           Show All
           <svg
