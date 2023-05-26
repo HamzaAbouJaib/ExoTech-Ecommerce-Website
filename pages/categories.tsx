@@ -16,13 +16,17 @@ export default function categories({
     <>
       <Navigation />
       <div className="w-[80%] m-auto mb-10 pt-20">
-        {categoryProducts.map((categoryProduct) => (
-          <CategoryDisplayGrid
-            title={categoryProduct?.category?.name}
-            link="fsfs"
-            products={categoryProduct?.products}
-          />
-        ))}
+        {categoryProducts.map((categoryProduct) => {
+          if (categoryProduct?.products.length > 0) {
+            return (
+              <CategoryDisplayGrid
+                title={categoryProduct?.category?.name}
+                link="/"
+                products={categoryProduct?.products}
+              />
+            );
+          }
+        })}
       </div>
     </>
   );
@@ -32,7 +36,7 @@ export async function getServerSideProps() {
   await mongooseConnect();
   const categoryProducts: any[] = [];
   const categories = await Category.find({});
-  const allProducts = await Product.find({});
+  const allProducts = await Product.find({ madeByGuest: { $eq: false } });
 
   for (const category of categories) {
     const products = [];
