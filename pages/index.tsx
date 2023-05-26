@@ -1,6 +1,6 @@
 import LandingPage from "@/components/LandingPage";
 import Navigation from "@/components/Navigation";
-import ProductsGrid from "@/components/RecentProducts";
+import ProductsGrid from "@/components/ProductsGrid";
 import TodaysDeals from "@/components/TodaysDeals";
 import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/models/Product";

@@ -1,5 +1,5 @@
 import Navigation from "@/components/Navigation";
-import ProductsGrid from "@/components/RecentProducts";
+import ProductsGrid from "@/components/ProductsGrid";
 import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/models/Product";
 import ProductType from "@/types/ProductType";
