@@ -59,7 +59,7 @@ export async function getServerSideProps() {
 
     for (const categoryProduct of categoryProducts) {
       if (categoryProduct.category.equals(selectedCategory)) {
-        categoryProduct.products.push(...products);
+        categoryProduct.products = [...products];
         add = false;
         break;
       }
@@ -69,6 +69,8 @@ export async function getServerSideProps() {
       categoryProducts.push({ category: selectedCategory, products: products });
     }
   }
+
+  console.log(categoryProducts);
 
   return {
     props: {

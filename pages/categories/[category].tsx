@@ -53,7 +53,7 @@ export async function getServerSideProps(context: any) {
 
     for (const categoryProduct of categoryProducts) {
       if (categoryProduct.category.equals(selectedCategory)) {
-        categoryProduct.products.push(...products);
+        categoryProduct.products = [...products];
         add = false;
         break;
       }
