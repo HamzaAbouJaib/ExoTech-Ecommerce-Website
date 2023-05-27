@@ -2,6 +2,7 @@ import ProductType from "@/types/ProductType";
 import ProductCard from "./ProductCard";
 import Link from "next/link";
 import CategoryType from "@/types/CategoryType";
+import { useEffect, useState } from "react";
 
 type CategoryDisplayGridType = {
   category: CategoryType;
@@ -12,8 +13,48 @@ type CategoryDisplayGridType = {
 const CategoryDisplayGrid = ({
   category,
   link,
-  products,
+  products: unfilteredProducts,
 }: CategoryDisplayGridType) => {
+  const [properties, setProperties] = useState<{ [key: string]: string }>({});
+  const [products, setProducts] = useState(unfilteredProducts);
+
+  function setProductProperty(name: string, value: string) {
+    setProperties((prev) => {
+      const newProductProperties = { ...prev };
+      newProductProperties[name] = value;
+      return newProductProperties;
+    });
+  }
+
+  useEffect(() => {
+    const prop: { [key: string]: string } = {};
+    for (const key of Object.keys(unfilteredProducts[0].properties)) {
+      prop[key] = "All";
+    }
+    setProperties(prop);
+  }, []);
+
+  useEffect(() => {
+    fetchProducts();
+  }, [properties]);
+
+  function fetchProducts() {
+    const filteredProducts = unfilteredProducts.filter((product: any) => {
+      let include = true;
+
+      for (const key of Object.keys(properties)) {
+        if (
+          product?.properties?.[key] !== properties[key] &&
+          properties[key] !== "All"
+        ) {
+          include = false;
+        }
+      }
+      if (include) return product;
+    });
+    setProducts(filteredProducts);
+  }
+
   return (
     <div className="mt-20">
       <div className="flex justify-between">
@@ -25,14 +66,16 @@ const CategoryDisplayGrid = ({
                 <label className="">{p.name}:</label>
                 <select
                   className="bg-gray-100"
-                  // value={properties[p.name]}
-                  // make it change the property at the right index
-                  // onChange={(e) =>
-                  //   setProductProperty(p.name, e.target.value)
-                  // }
+                  value={properties[p.name]}
+                  onChange={(e) => setProductProperty(p.name, e.target.value)}
                 >
+                  <option className="w-40" value="All">
+                    All
+                  </option>
                   {p.values.map((value: string) => (
-                    <option className="w-40" value={value}>{value}</option>
+                    <option className="w-40" value={value}>
+                      {value[0].toUpperCase() + value.slice(1)}
+                    </option>
                   ))}
                 </select>
               </div>
