@@ -5,7 +5,6 @@ import { Category } from "@/models/Category";
 import { Product } from "@/models/Product";
 import CategoryType from "@/types/CategoryType";
 import ProductType from "@/types/ProductType";
-import { useRouter } from "next/router";
 
 export default function CategoryPage({
   categoryProduct,
