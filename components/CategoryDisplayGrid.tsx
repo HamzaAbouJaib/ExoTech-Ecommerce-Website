@@ -27,15 +27,9 @@ const CategoryDisplayGrid = ({
   }
 
   useEffect(() => {
-    console.log(unfilteredProducts);
-
     const prop: { [key: string]: string } = {};
-    for (const key of Object.keys(unfilteredProducts[0].properties)) {
-      if (key === "sort") {
-        prop[key] = "Newest";
-      } else {
-        prop[key] = "All";
-      }
+    for (const key of Object.keys(products[0].properties)) {
+      prop[key] = "All";
     }
     setProperties(prop);
     unfilteredProducts.sort(compareDate);
@@ -49,7 +43,6 @@ const CategoryDisplayGrid = ({
   function fetchProducts() {
     const filteredProducts = unfilteredProducts.filter((product: any) => {
       let include = true;
-
       for (const key of Object.keys(properties)) {
         if (key === "sort") continue;
         if (
