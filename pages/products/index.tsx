@@ -17,7 +17,7 @@ export default function products({ products }: { products: ProductType[] }) {
 
 export async function getServerSideProps() {
   await mongooseConnect();
-  const products = await Product.find({}, null, {
+  const products = await Product.find({ madeByGuest: { $eq: false } }, null, {
     sort: { _id: -1 },
   });
   return {
