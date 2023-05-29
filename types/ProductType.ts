@@ -5,7 +5,7 @@ export default interface ProductType {
   brand: string;
   price: string;
   category: string;
-  properties: { name: string; value: string };
+  properties: { [key: string]: string };
   images: string[];
   discount: string;
 }
