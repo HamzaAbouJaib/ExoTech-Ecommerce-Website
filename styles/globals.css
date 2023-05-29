@@ -26,3 +26,14 @@ body {
 .btn-secondary {
   @apply btn bg-slate-600 text-white;
 }
+
+.scrollable {
+  @apply overflow-scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollable::-webkit-scrollbar {
+  display: none;
+}
+

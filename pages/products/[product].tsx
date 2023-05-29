@@ -15,7 +15,7 @@ export default function ProductPage({ product }: { product: ProductType }) {
       <div className="w-[80%] m-auto mb-10 pt-20">
         <div className="mt-32 grid grid-cols-2 gap-32">
           <div className="flex items-center gap-10">
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 h-[500px] justify-center scrollable">
               {product?.images?.map((img) => (
                 <div
                   className={`w-32 p-3 rounded-lg flex justify-center ${
@@ -39,7 +39,20 @@ export default function ProductPage({ product }: { product: ProductType }) {
               />
             </div>
           </div>
-          <div>Info</div>
+          <div>
+            <h1 className="text-3xl font-semibold">{product?.name}</h1>
+            <p className="mb-3 text-gray-600 font-semibold">{product?.brand}</p>
+
+            <p className="text-lg text-gray-900 mb-7">{product?.description}</p>
+            <div className="flex gap-4 mb-5">
+              {Object.keys(product?.properties).map((propertyKey: string) => (
+                <p className="bg-gray-200 py-1 px-3 rounded-xl">
+                  <span className="font-semibold">{propertyKey}:</span>{" "}
+                  {product?.properties[propertyKey]}
+                </p>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </>
