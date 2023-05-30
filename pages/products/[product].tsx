@@ -4,8 +4,17 @@ import ProductInfo from "@/components/ProductInfo";
 import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/models/Product";
 import ProductType from "@/types/ProductType";
+import { getCategoryProducts } from "../categories";
+import { Category } from "@/models/Category";
+import ProductsGrid from "@/components/ProductsGrid";
 
-export default function ProductPage({ product }: { product: ProductType }) {
+export default function ProductPage({
+  product,
+  similarProducts,
+}: {
+  product: ProductType;
+  similarProducts: ProductType[];
+}) {
   return (
     <>
       <Navigation />
@@ -14,6 +23,7 @@ export default function ProductPage({ product }: { product: ProductType }) {
           <ProductImages images={product?.images} name={product?.name} />
           <ProductInfo product={product} />
         </div>
+        <ProductsGrid title={"Similar Products"} products={similarProducts} />
       </div>
     </>
   );
@@ -21,11 +31,11 @@ export default function ProductPage({ product }: { product: ProductType }) {
 
 export async function getServerSideProps(context: any) {
   await mongooseConnect();
-  const { product: _id } = context.query;
+  const { product: productId } = context.query;
   let product;
   try {
     product = await Product.findOne({
-      _id: _id,
+      _id: productId,
       madeByGuest: { $eq: false },
     });
   } catch (error) {
@@ -36,9 +46,34 @@ export async function getServerSideProps(context: any) {
     }
   }
 
+  const categoryProducts = await getCategoryProducts();
+  const categories = await Category.find({});
+  const categoryId = product?.category;
+  let similarProducts;
+
+  if (categoryId && categories.length > 0) {
+    let selectedCategory = categories.find(({ _id }) => _id.equals(categoryId));
+
+    while (selectedCategory?.parent?._id) {
+      const parentCategory = categories.find(({ _id }) =>
+        _id.equals(selectedCategory?.parent?._id)
+      );
+      selectedCategory = parentCategory;
+    }
+
+    similarProducts = categoryProducts.filter(({ category }) =>
+      category._id.equals(selectedCategory?._id)
+    )[0].products;
+  }
+
+  similarProducts = similarProducts.filter(
+    (product: ProductType) => productId !== product?._id.toString()
+  );
+
   return {
     props: {
       product: JSON.parse(JSON.stringify(product)),
+      similarProducts: JSON.parse(JSON.stringify(similarProducts)),
     },
   };
 }
