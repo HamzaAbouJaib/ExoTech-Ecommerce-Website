@@ -31,10 +31,14 @@ export async function getServerSideProps() {
     sort: { _id: -1 },
     limit: 3,
   });
-  const recentProducts = await Product.find({}, null, {
-    sort: { _id: -1 },
-    limit: 6,
-  });
+  const recentProducts = await Product.find(
+    { madeByGuest: { $eq: false } },
+    null,
+    {
+      sort: { _id: -1 },
+      limit: 6,
+    }
+  );
   return {
     props: {
       newDeals: JSON.parse(JSON.stringify(newDeals)),
