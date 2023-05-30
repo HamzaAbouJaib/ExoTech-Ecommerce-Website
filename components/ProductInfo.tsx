@@ -25,28 +25,31 @@ const ProductInfo = ({ product }: { product: ProductType }) => {
       </div>
       <p className="text-lg text-gray-900 mb-4 mt-3">{product?.description}</p>
       <div className="flex gap-4 mb-5 flex-wrap">
-        <p className="font-semibold flex items-center gap-1 text-white bg-red-600 rounded-md py-2 px-4">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-5 h-5"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z"
-            />
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M6 6h.008v.008H6V6z"
-            />
-          </svg>
-          {product?.discount}% Discount
-        </p>
+        {Number.parseFloat(product?.discount) > 0 && (
+          <p className="font-semibold flex items-center gap-1 text-white bg-red-600 rounded-md py-2 px-4">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-5 h-5"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z"
+              />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 6h.008v.008H6V6z"
+              />
+            </svg>
+            {product?.discount}% Discount
+          </p>
+        )}
+
         {Object.keys(product?.properties).map((propertyKey: string) => (
           <p
             key={propertyKey}
