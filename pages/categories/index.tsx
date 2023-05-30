@@ -5,7 +5,6 @@ import { Category } from "@/models/Category";
 import { Product } from "@/models/Product";
 import CategoryType from "@/types/CategoryType";
 import ProductType from "@/types/ProductType";
-import { log } from "console";
 
 export default function categories({
   categoryProducts,
@@ -32,7 +31,7 @@ export default function categories({
   );
 }
 
-export async function getServerSideProps() {
+export async function getCategoryProducts() {
   await mongooseConnect();
   const categoryProducts: any[] = [];
   const categories = await Category.find({});
@@ -69,8 +68,11 @@ export async function getServerSideProps() {
       categoryProducts.push({ category: selectedCategory, products: products });
     }
   }
+  return categoryProducts;
+}
 
-  console.log(categoryProducts);
+export async function getServerSideProps() {
+  const categoryProducts = await getCategoryProducts();
 
   return {
     props: {
