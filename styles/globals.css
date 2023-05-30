@@ -31,9 +31,11 @@ body {
   @apply overflow-scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .scrollable::-webkit-scrollbar {
   display: none;
 }
-
