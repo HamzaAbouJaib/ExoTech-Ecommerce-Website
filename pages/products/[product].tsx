@@ -1,51 +1,22 @@
 import Navigation from "@/components/Navigation";
+import ProductImages from "@/components/ProductImages";
 import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/models/Product";
 import ProductType from "@/types/ProductType";
-import { useState } from "react";
 
 export default function ProductPage({ product }: { product: ProductType }) {
-  const [activeImage, setActiveImage] = useState(product?.images?.[0]);
-
-  const activeStyling = "bg-gray-200/70";
-
   return (
     <>
       <Navigation />
       <div className="w-[80%] m-auto mb-10 pt-20">
         <div className="mt-32 grid grid-cols-2 gap-32">
-          <div className="flex items-center gap-10">
-            <div className="flex flex-col gap-4 h-[500px] justify-center scrollable">
-              {product?.images?.map((img) => (
-                <div
-                  key={img}
-                  className={`w-32 p-3 rounded-lg flex justify-center ${
-                    img === activeImage && activeStyling
-                  }`}
-                  onClick={() => setActiveImage(img)}
-                >
-                  <img
-                    className="cursor-pointer"
-                    src={img}
-                    alt={product?.name + " image"}
-                  />
-                </div>
-              ))}
-            </div>
-            <div className="w-[500px] h-[500px] p-10 flex items-center">
-              <img
-                className=""
-                src={activeImage}
-                alt={product?.name + " image"}
-              />
-            </div>
-          </div>
-          <div className="leading-none">
-            <h1 className="text-3xl font-semibold">{product?.name}</h1>
-            <p className="mb-4 text-gray-500 font-semibold">{product?.brand}</p>
-            <div className="text-xl font-semibold">
+          <ProductImages images={product?.images} name={product?.name} />
+          <div className="leading-none mt-4">
+            <h1 className="text-4xl font-semibold">{product?.name}</h1>
+            <p className="mb-4 text-gray-500 font-semibold text-lg">{product?.brand}</p>
+            <div className="text-2xl font-semibold">
               {Number.parseFloat(product?.discount) > 0 ? (
-                <div className="flex gap-2">
+                <div className="flex gap-2 items-center">
                   <p>
                     {"$" +
                       Number.parseFloat(product?.price) *
@@ -96,7 +67,9 @@ export default function ProductPage({ product }: { product: ProductType }) {
               ))}
             </div>
             <div>
-              <button className="btn-primary-outline text-xl">Add to Cart</button>
+              <button className="btn-primary-outline text-xl">
+                Add to Cart
+              </button>
             </div>
           </div>
         </div>
