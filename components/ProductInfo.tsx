@@ -55,7 +55,7 @@ const ProductInfo = ({ product }: { product: ProductType }) => {
             key={propertyKey}
             className="btn-primary py-1 px-3 rounded-xl flex items-center gap-1"
           >
-            <span className="font-semibold">{propertyKey}:</span>
+            <span className="font-semibold capitalize">{propertyKey}:</span>
             {product?.properties[propertyKey]}
           </p>
         ))}
