@@ -102,7 +102,7 @@ const CategoryDisplayGrid = ({
           <div className="flex gap-5">
             {category?.properties.map((p) => (
               <div className="bg-gray-100 flex items-center h-max px-6 py-2 gap-5 text-lg rounded-lg">
-                <label className="">{p.name}:</label>
+                <label className="capitalize">{p.name}:</label>
                 <select
                   className="bg-gray-100"
                   value={properties[p.name]}
@@ -112,8 +112,8 @@ const CategoryDisplayGrid = ({
                     All
                   </option>
                   {p.values.map((value: string) => (
-                    <option className="w-40" value={value}>
-                      {value[0].toUpperCase() + value.slice(1)}
+                    <option className="w-40 capitalize" value={value}>
+                      {value}
                     </option>
                   ))}
                 </select>
