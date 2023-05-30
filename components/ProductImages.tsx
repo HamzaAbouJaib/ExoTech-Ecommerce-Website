@@ -24,7 +24,7 @@ const ProductImages = ({
           </div>
         ))}
       </div>
-      <div className="w-[500px] h-[500px] p-10 flex items-center">
+      <div className="w-[500px] h-[500px] p-5 flex items-center">
         <img className="" src={activeImage} alt={name + " image"} />
       </div>
     </div>
