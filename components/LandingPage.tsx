@@ -1,6 +1,6 @@
 const LandingPage = () => {
   return (
-    <div className="h-[80dvh] pt-16 bg-slate-900 flex items-center text-white">
+    <div className="min-h-[80dvh] pt-16 bg-slate-900 flex items-center text-white">
       <div className="w-[80%] m-auto grid grid-cols-2 gap-32">
         <div className="flex flex-col gap-8 justify-center">
           <h1 className="text-5xl font-semibold">Samsung Galaxy S23 Ultra</h1>
