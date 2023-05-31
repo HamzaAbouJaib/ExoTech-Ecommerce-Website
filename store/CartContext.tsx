@@ -4,7 +4,19 @@ type CartProps = {
   children: React.ReactNode;
 };
 
-export const CartContext = createContext({});
+type CategoriesContextType = {
+  cartProducts: String[];
+  addProductToCart: (id: string) => void;
+  removeProductFromCart: (id: string) => void;
+  clearCart: () => void;
+};
+
+export const CartContext = createContext<CategoriesContextType>({
+  cartProducts: [],
+  addProductToCart: (id: string) => {},
+  removeProductFromCart: (id: string) => {},
+  clearCart: () => {},
+});
 
 export function CartContextProvider({ children }: CartProps) {
   const [cartProducts, setCartProducts] = useState<string[]>([]);
@@ -44,7 +56,6 @@ export function CartContextProvider({ children }: CartProps) {
     <CartContext.Provider
       value={{
         cartProducts,
-        setCartProducts,
         addProductToCart,
         removeProductFromCart,
         clearCart,
