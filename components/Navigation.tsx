@@ -1,6 +1,10 @@
+import { CartContext } from "@/store/CartContext";
 import Link from "next/link";
+import { useContext } from "react";
 
 const Navigation = () => {
+  const { cartProducts } = useContext(CartContext);
+
   return (
     <div className="fixed bg-slate-900 w-full p-6 text-white shadow-md">
       <div className="w-[80%] flex justify-between items-center m-auto">
@@ -45,7 +49,7 @@ const Navigation = () => {
           <p>Login/Register</p>
           <Link href={"/cart"} className="relative flex items-center gap-2">
             <span className="bg-red-600 flex justify-center items-center w-5 h-5 text-base font-semibold rounded-[50%] leading-none absolute -top-2 left-3">
-              0
+              {cartProducts.length}
             </span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
