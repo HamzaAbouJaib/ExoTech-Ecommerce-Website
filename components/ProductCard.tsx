@@ -1,7 +1,8 @@
 import ProductType from "@/types/ProductType";
 import Link from "next/link";
-import React from "react";
+import React, { useContext } from "react";
 import CardPrice from "./CardPrice";
+import { CartContext } from "@/store/CartContext";
 
 const ProductCard = ({
   _id,
@@ -11,6 +12,8 @@ const ProductCard = ({
   images,
   discount,
 }: ProductType) => {
+  const { addProductToCart } = useContext(CartContext);
+
   return (
     <div className="flex flex-col justify-between">
       <div className="pb-5 flex flex-col gap-3">
@@ -32,7 +35,10 @@ const ProductCard = ({
           </div>
         </div>
       </div>
-      <button className="btn-primary-outline text-lg font-normal w-max">
+      <button
+        className="btn-primary-outline text-lg font-normal w-max"
+        onClick={() => addProductToCart(_id)}
+      >
         Add to Cart
       </button>
     </div>

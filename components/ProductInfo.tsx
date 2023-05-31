@@ -1,6 +1,10 @@
+import { CartContext } from "@/store/CartContext";
 import ProductType from "@/types/ProductType";
+import { useContext } from "react";
 
 const ProductInfo = ({ product }: { product: ProductType }) => {
+  const { addProductToCart } = useContext(CartContext);
+
   return (
     <div className="leading-none mt-4">
       <h1 className="text-4xl font-semibold">{product?.name}</h1>
@@ -61,7 +65,12 @@ const ProductInfo = ({ product }: { product: ProductType }) => {
         ))}
       </div>
       <div>
-        <button className="btn-primary-outline text-xl">Add to Cart</button>
+        <button
+          className="btn-primary-outline text-xl"
+          onClick={() => addProductToCart(product?._id)}
+        >
+          Add to Cart
+        </button>
       </div>
     </div>
   );
