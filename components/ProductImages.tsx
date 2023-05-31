@@ -8,7 +8,7 @@ const ProductImages = ({
   images?: string[];
 }) => {
   const [activeImage, setActiveImage] = useState(images?.[0]);
-  const activeStyling = "bg-gray-200/70";
+  const activeStyling = "border-primary";
 
   const slideRef = useRef<HTMLDivElement>(null);
   // const [width, setWidth] = useState(0);
@@ -75,13 +75,13 @@ const ProductImages = ({
           {images?.map((img) => (
             <div
               key={img}
-              className={`w-[100px] p-3 rounded-lg flex justify-center border border-gray-200 cursor-pointer ${
+              className={`w-[100px] h-[100px] p-2 rounded-lg flex justify-center items-center border-2 border-gray-200 cursor-pointer ${
                 img === activeImage && activeStyling
               }`}
               onClick={() => setActiveImage(img)}
             >
               <img
-                className="pointer-events-none"
+                className="pointer-events-none h-max w-max"
                 src={img}
                 alt={name + " image"}
               />
@@ -112,7 +112,7 @@ const ProductImages = ({
       </div>
 
       <div className="w-[500px] h-[500px] p-5 flex items-center">
-        <img className="" src={activeImage} alt={name + " image"} />
+        <img src={activeImage} alt={name + " image"} title={name} />
       </div>
     </div>
   );
