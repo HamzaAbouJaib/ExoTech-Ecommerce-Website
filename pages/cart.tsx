@@ -120,7 +120,7 @@ export default function CartPage() {
             ) : (
               <div className="text-xl">Your Cart is Empty</div>
             )}
-          </div>{" "}
+          </div>
         </div>
       </div>
     </>
