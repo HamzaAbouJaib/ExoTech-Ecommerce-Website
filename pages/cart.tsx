@@ -24,17 +24,17 @@ export default function CartPage() {
         <h1 className="text-3xl font-semibold mb-7 mt-20">Cart</h1>
         <div className="grid grid-cols-2 gap-20">
           <div className="border border-gray-300 shadow-md p-5 rounded-xl">
-            <table className="w-full ">
-              <thead className="border-b-2 border-gray-300 text-gray-700 font-semibold uppercase">
-                <tr>
-                  <td>Product</td>
-                  <td>Quantity</td>
-                  <td>Price</td>
-                </tr>
-              </thead>
-              <tbody>
-                {products.length > 0 &&
-                  products.map((product) => (
+            {cartProducts?.length > 0 ? (
+              <table className="w-full ">
+                <thead className="border-b-2 border-gray-300 text-gray-700 font-semibold uppercase">
+                  <tr>
+                    <td>Product</td>
+                    <td>Quantity</td>
+                    <td>Price</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  {products.map((product) => (
                     <tr>
                       <td className="flex gap-2 mt-4">
                         <img
@@ -66,7 +66,9 @@ export default function CartPage() {
                       </td>
                       <td>
                         <div className="flex justify-between w-max gap-4 border border-gray-400/80 rounded-md px-2 py-1">
-                          <button>
+                          <button
+                            onClick={() => removeProductFromCart(product._id)}
+                          >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
@@ -88,7 +90,7 @@ export default function CartPage() {
                                 .length
                             }
                           </p>
-                          <button>
+                          <button onClick={() => addProductToCart(product._id)}>
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
@@ -113,9 +115,12 @@ export default function CartPage() {
                       </td>
                     </tr>
                   ))}
-              </tbody>
-            </table>
-          </div>
+                </tbody>
+              </table>
+            ) : (
+              <div className="text-xl">Your Cart is Empty</div>
+            )}
+          </div>{" "}
         </div>
       </div>
     </>
