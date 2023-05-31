@@ -1,8 +1,8 @@
 import CategoryDisplayGrid from "@/components/CategoryDisplayGrid";
 import Navigation from "@/components/Navigation";
+import { getCategoryProducts } from "@/lib/getCategoryProducts";
 import CategoryType from "@/types/CategoryType";
 import ProductType from "@/types/ProductType";
-import { getCategoryProducts } from ".";
 
 export default function CategoryPage({
   categoryProduct,

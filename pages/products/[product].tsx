@@ -4,9 +4,9 @@ import ProductInfo from "@/components/ProductInfo";
 import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/models/Product";
 import ProductType from "@/types/ProductType";
-import { getCategoryProducts } from "../categories";
 import { Category } from "@/models/Category";
 import ProductsGrid from "@/components/ProductsGrid";
+import { getCategoryProducts } from "@/lib/getCategoryProducts";
 
 export default function ProductPage({
   product,
