@@ -82,7 +82,12 @@ export default function CartPage() {
                               />
                             </svg>
                           </button>
-                          <p>3</p>
+                          <p>
+                            {
+                              cartProducts.filter((id) => id === product._id)
+                                .length
+                            }
+                          </p>
                           <button>
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -101,7 +106,11 @@ export default function CartPage() {
                           </button>
                         </div>
                       </td>
-                      <td>$ amount * {product.price}</td>
+                      <td>
+                        $
+                        {cartProducts.filter((id) => id === product._id)
+                          .length * Number.parseFloat(product.price)}
+                      </td>
                     </tr>
                   ))}
               </tbody>
