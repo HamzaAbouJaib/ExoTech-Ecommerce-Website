@@ -11,6 +11,7 @@ const OrderSchema = new Schema(
     city: String,
     country: String,
     paid: Boolean,
+    status: String,
   },
   {
     timestamps: true,
