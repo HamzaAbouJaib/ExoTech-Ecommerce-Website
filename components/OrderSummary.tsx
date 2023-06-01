@@ -14,7 +14,7 @@ const OrderSummary = ({ products }: { products: ProductType[] }) => {
   }
 
   return (
-    <div className="border border-gray-300 shadow-md p-5 rounded-xl col-span-2">
+    <div className="border border-gray-300 shadow-md p-10 rounded-xl col-span-2">
       <h3 className="mb-1 font-semibold text-gray-800">Order Summary</h3>
       {cartProducts?.length > 0 ? (
         <>
