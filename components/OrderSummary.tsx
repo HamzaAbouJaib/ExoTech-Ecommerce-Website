@@ -100,8 +100,10 @@ const OrderSummary = ({ products }: { products: ProductType[] }) => {
                   </td>
                   <td>
                     CA$
-                    {cartProducts.filter((id) => id === product._id).length *
-                      Number.parseFloat(product.price)}
+                    {new Intl.NumberFormat("en-US").format(
+                      cartProducts.filter((id) => id === product._id).length *
+                        Number.parseFloat(product.price)
+                    )}
                   </td>
                 </tr>
               ))}
@@ -109,7 +111,9 @@ const OrderSummary = ({ products }: { products: ProductType[] }) => {
           </table>
           <div className="text-xl font-semibold flex items-center justify-between px-1 border-t-2 border-gray-300 mt-2 pt-2">
             <p className="text-gray-500">Subtotal</p>
-            <p className="pr-9">CA${total.toFixed(2)}</p>
+            <p className="pr-9">
+              CA${new Intl.NumberFormat("en-US").format(total)}
+            </p>
           </div>
           <div className="text-xl font-semibold flex items-center justify-between px-1 border-t border-gray-300 mt-2 pt-2">
             <p className="text-gray-500">Shipping</p>
@@ -117,7 +121,9 @@ const OrderSummary = ({ products }: { products: ProductType[] }) => {
           </div>
           <div className="text-xl font-semibold flex items-center justify-between px-1 border-t border-gray-300 mt-2 pt-2">
             <p className="text-gray-500">Total</p>
-            <p className="pr-9">CA${(total + 50).toFixed(2)}</p>
+            <p className="pr-9">
+              CA${new Intl.NumberFormat("en-US").format(total + 50)}
+            </p>
           </div>
         </>
       ) : (
