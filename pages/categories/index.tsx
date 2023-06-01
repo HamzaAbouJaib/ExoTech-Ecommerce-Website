@@ -1,9 +1,6 @@
 import CategoryDisplayGrid from "@/components/CategoryDisplayGrid";
 import Navigation from "@/components/Navigation";
 import { getCategoryProducts } from "@/lib/getCategoryProducts";
-import { mongooseConnect } from "@/lib/mongoose";
-import { Category } from "@/models/Category";
-import { Product } from "@/models/Product";
 import CategoryType from "@/types/CategoryType";
 import ProductType from "@/types/ProductType";
 
