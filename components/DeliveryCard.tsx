@@ -1,6 +1,10 @@
-import { useState } from "react";
+import { CartContext } from "@/store/CartContext";
+import axios from "axios";
+import { useContext, useState } from "react";
 
 const DeliveryCard = () => {
+  const { cartProducts } = useContext(CartContext);
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [mobile, setMobile] = useState("");
@@ -8,6 +12,18 @@ const DeliveryCard = () => {
   const [country, setCountry] = useState("");
   const [address, setAddress] = useState("");
   const [postalCode, setPostalCode] = useState("");
+
+  async function proceedToPayment() {
+    await axios.post("/api/checkout", {
+      name,
+      email,
+      city,
+      postalCode,
+      country,
+      address,
+      cartProducts,
+    });
+  }
 
   return (
     <div className="border border-gray-300 shadow-md p-10 rounded-xl h-max">
@@ -69,7 +85,7 @@ const DeliveryCard = () => {
           value={country}
           onChange={(e) => setCountry(e.target.value)}
         />
-        <button className="btn-primary mt-5 w-full">Continue to Payment</button>
+        <button className="btn-primary mt-5 w-full" onClick={proceedToPayment}>Proceed to Payment</button>
       </div>
     </div>
   );
