@@ -1,4 +1,5 @@
 import { mongooseConnect } from "@/lib/mongoose";
+import { Order } from "@/models/Order";
 import { Product } from "@/models/Product";
 import { NextApiRequest, NextApiResponse } from "next";
 
@@ -49,5 +50,15 @@ export default async function handler(
     }
   }
 
-  res.json({ line_items });
+  const orderDoc = await Order.create({
+    line_items,
+    name,
+    email,
+    mobile,
+    address,
+    postalCode,
+    city,
+    country,
+    paid: false,
+  });
 }
