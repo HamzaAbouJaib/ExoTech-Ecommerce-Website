@@ -14,7 +14,7 @@ const DeliveryCard = () => {
   const [postalCode, setPostalCode] = useState("");
 
   async function proceedToPayment() {
-    await axios.post("/api/checkout", {
+    const response = await axios.post("/api/checkout", {
       name,
       email,
       city,
@@ -23,6 +23,10 @@ const DeliveryCard = () => {
       address,
       cartProducts,
     });
+
+    if (response.data.url) {
+      window.location = response.data.url;
+    }
   }
 
   return (
@@ -85,7 +89,9 @@ const DeliveryCard = () => {
           value={country}
           onChange={(e) => setCountry(e.target.value)}
         />
-        <button className="btn-primary mt-5 w-full" onClick={proceedToPayment}>Proceed to Payment</button>
+        <button className="btn-primary mt-5 w-full" onClick={proceedToPayment}>
+          Proceed to Payment
+        </button>
       </div>
     </div>
   );
