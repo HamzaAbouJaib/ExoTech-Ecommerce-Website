@@ -17,6 +17,7 @@ const DeliveryCard = () => {
     const response = await axios.post("/api/checkout", {
       name,
       email,
+      mobile,
       city,
       postalCode,
       country,
