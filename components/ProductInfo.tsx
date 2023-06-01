@@ -15,16 +15,16 @@ const ProductInfo = ({ product }: { product: ProductType }) => {
         {Number.parseFloat(product?.discount) > 0 ? (
           <div className="flex gap-2 items-center">
             <p>
-              {"$" +
+              {"CA$" +
                 Number.parseFloat(product?.price) *
                   (1 - Number.parseFloat(product?.discount) / 100)}
             </p>
             <s className="text-red-600 text-lg font-normal">
-              ${Number.parseFloat(product?.price)}
+              CA${Number.parseFloat(product?.price)}
             </s>
           </div>
         ) : (
-          <p>{"$" + Number.parseFloat(product?.price)}</p>
+          <p>{"CA$" + Number.parseFloat(product?.price)}</p>
         )}
       </div>
       <p className="text-lg text-gray-900 mb-4 mt-3">{product?.description}</p>

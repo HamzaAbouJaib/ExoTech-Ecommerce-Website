@@ -54,20 +54,6 @@ export default async function handler(
     }
   }
 
-  console.log(total);
-
-  // Tax amount
-  line_items.push({
-    quantity: 1,
-    price_data: {
-      currency: "CAD",
-      product_data: {
-        name: "Tax",
-      },
-      unit_amount: Math.round(total * 0.13 * 100),
-    },
-  });
-
   const orderDoc = await Order.create({
     line_items,
     name,
