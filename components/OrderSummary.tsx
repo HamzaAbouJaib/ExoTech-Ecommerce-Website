@@ -99,7 +99,7 @@ const OrderSummary = ({ products }: { products: ProductType[] }) => {
                     </div>
                   </td>
                   <td>
-                    $
+                    CA$
                     {cartProducts.filter((id) => id === product._id).length *
                       Number.parseFloat(product.price)}
                   </td>
@@ -109,19 +109,15 @@ const OrderSummary = ({ products }: { products: ProductType[] }) => {
           </table>
           <div className="text-xl font-semibold flex items-center justify-between px-1 border-t-2 border-gray-300 mt-2 pt-2">
             <p className="text-gray-500">Subtotal</p>
-            <p className="pr-9">${total}</p>
-          </div>
-          <div className="text-xl font-semibold flex items-center justify-between px-1 border-t border-gray-300 mt-2 pt-2">
-            <p className="text-gray-500">Tax</p>
-            <p className="pr-9">${(total * 0.13).toFixed(2)}</p>
+            <p className="pr-9">CA${total.toFixed(2)}</p>
           </div>
           <div className="text-xl font-semibold flex items-center justify-between px-1 border-t border-gray-300 mt-2 pt-2">
             <p className="text-gray-500">Shipping</p>
-            <p className="pr-9">$50.00</p>
+            <p className="pr-9">CA$50.00</p>
           </div>
           <div className="text-xl font-semibold flex items-center justify-between px-1 border-t border-gray-300 mt-2 pt-2">
             <p className="text-gray-500">Total</p>
-            <p className="pr-9">${(total + 50 + total * 0.13).toFixed(2)}</p>
+            <p className="pr-9">CA${(total + 50).toFixed(2)}</p>
           </div>
         </>
       ) : (
