@@ -68,18 +68,6 @@ export default async function handler(
     },
   });
 
-  // Shipping amount
-  line_items.push({
-    quantity: 1,
-    price_data: {
-      currency: "CAD",
-      product_data: {
-        name: "Shipping",
-      },
-      unit_amount: 50 * 100,
-    },
-  });
-
   const orderDoc = await Order.create({
     line_items,
     name,
@@ -93,6 +81,31 @@ export default async function handler(
   });
 
   const session = await stripe.checkout.sessions.create({
+    shipping_address_collection: {
+      allowed_countries: ["US", "CA"],
+    },
+    shipping_options: [
+      {
+        shipping_rate_data: {
+          type: "fixed_amount",
+          fixed_amount: {
+            amount: 5000,
+            currency: "cad",
+          },
+          display_name: "Standard shipping",
+          delivery_estimate: {
+            minimum: {
+              unit: "business_day",
+              value: 5,
+            },
+            maximum: {
+              unit: "business_day",
+              value: 7,
+            },
+          },
+        },
+      },
+    ],
     line_items,
     mode: "payment",
     customer_email: email,
