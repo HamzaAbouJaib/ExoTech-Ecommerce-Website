@@ -15,10 +15,10 @@ const CardPrice = ({
             <span className="text-red-600 font-normal">-{discount}%</span> $
             {numberPrice * (1 - numberDiscount / 100)}
           </p>
-          <s className="text-slate-600">${price}</s>
+          <s className="text-slate-600">CA${price}</s>
         </>
       ) : (
-        <p>${numberPrice}</p>
+        <p>CA${numberPrice}</p>
       )}
     </>
   );
