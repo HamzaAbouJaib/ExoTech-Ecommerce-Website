@@ -25,7 +25,7 @@ export default function CartPage() {
         <h1 className="text-3xl font-semibold mb-7 mt-20">Cart</h1>
         <div className="grid grid-cols-3 gap-20">
           <OrderSummary products={products} />
-          <DeliveryCard />
+          {cartProducts.length > 0 && <DeliveryCard />}
         </div>
       </div>
     </>
