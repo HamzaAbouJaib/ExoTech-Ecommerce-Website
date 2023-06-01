@@ -39,3 +39,15 @@ body {
 .scrollable::-webkit-scrollbar {
   display: none;
 }
+
+.delivery input {
+  @apply w-full border-2 border-gray-200 py-1 px-3 rounded-md;
+}
+
+.delivery label {
+  @apply font-semibold mt-1;
+}
+
+.delivery input:focus {
+  @apply outline-none border-gray-500;
+}
