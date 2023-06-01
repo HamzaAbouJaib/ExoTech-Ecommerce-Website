@@ -7,8 +7,14 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 
 export default function CartPage() {
-  const { cartProducts } = useContext(CartContext);
+  const { cartProducts, clearCart } = useContext(CartContext);
   const [products, setProducts] = useState<ProductType[]>([]);
+  const [domLoaded, setDomLoaded] = useState(false);
+
+  useEffect(() => {
+    setDomLoaded(true);
+  }, []);
+
   useEffect(() => {
     if (cartProducts.length > 0) {
       axios.post("/api/cart", { ids: cartProducts }).then((response) => {
@@ -18,6 +24,12 @@ export default function CartPage() {
       setProducts([]);
     }
   }, [cartProducts]);
+
+  if (domLoaded && window.location.href.includes("success")) {
+    clearCart();
+    return <div>Successful payment</div>;
+  }
+
   return (
     <>
       <Navigation />
