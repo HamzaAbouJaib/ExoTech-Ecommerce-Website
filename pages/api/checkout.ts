@@ -27,6 +27,8 @@ export default async function handler(
   const uniqueProductIds = [...new Set(cartProducts)];
   const productsInfo = await Product.find({ _id: uniqueProductIds });
 
+  let total = 0;
+
   // Stripe data
   let line_items = [];
   for (const productId of uniqueProductIds) {
@@ -38,10 +40,11 @@ export default async function handler(
       0;
 
     if (quantity > 0 && productInfo) {
+      total += Number.parseFloat(productInfo.price) * quantity;
       line_items.push({
         quantity,
         price_data: {
-          currency: "USD",
+          currency: "CAD",
           product_data: {
             name: productInfo.name,
           },
@@ -50,6 +53,32 @@ export default async function handler(
       });
     }
   }
+
+  console.log(total);
+
+  // Tax amount
+  line_items.push({
+    quantity: 1,
+    price_data: {
+      currency: "CAD",
+      product_data: {
+        name: "Tax",
+      },
+      unit_amount: Math.round(total * 0.13 * 100),
+    },
+  });
+
+  // Shipping amount
+  line_items.push({
+    quantity: 1,
+    price_data: {
+      currency: "CAD",
+      product_data: {
+        name: "Shipping",
+      },
+      unit_amount: 50 * 100,
+    },
+  });
 
   const orderDoc = await Order.create({
     line_items,
