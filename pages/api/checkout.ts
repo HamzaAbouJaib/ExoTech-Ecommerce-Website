@@ -45,7 +45,7 @@ export default async function handler(
           product_data: {
             name: productInfo.name,
           },
-          unit_amount: productInfo.price * 100,
+          unit_amount: Math.round(Number.parseFloat(productInfo.price) * 100),
         },
       });
     }
