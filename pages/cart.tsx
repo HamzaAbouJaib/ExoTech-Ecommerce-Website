@@ -22,8 +22,11 @@ export default function CartPage() {
       <Navigation />
       <div className="w-[80%] m-auto mb-10 pt-20">
         <h1 className="text-3xl font-semibold mb-7 mt-20">Cart</h1>
-        <div className="grid grid-cols-2 gap-20">
+        <div className="grid grid-cols-3 gap-20">
           <OrderSummary products={products} />
+          <div className="border border-gray-300 shadow-md p-5 rounded-xl">
+            <h3 className="mb-1 font-semibold text-gray-800">Delivery Information</h3>
+          </div>
         </div>
       </div>
     </>
