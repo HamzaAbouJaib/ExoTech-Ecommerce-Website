@@ -12,7 +12,7 @@ const CardPrice = ({
       {numberDiscount > 0 ? (
         <>
           <p>
-            <span className="text-red-600 font-normal">-{discount}%</span> $
+            <span className="text-red-600 font-normal">-{discount}%</span> CA$
             {numberPrice * (1 - numberDiscount / 100)}
           </p>
           <s className="text-slate-600">CA${price}</s>
