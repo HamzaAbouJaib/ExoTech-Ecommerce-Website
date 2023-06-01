@@ -64,6 +64,7 @@ export default async function handler(
     city,
     country,
     paid: false,
+    status: "Todo",
   });
 
   const session = await stripe.checkout.sessions.create({
