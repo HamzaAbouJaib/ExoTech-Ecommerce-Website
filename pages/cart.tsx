@@ -1,6 +1,7 @@
 import DeliveryCard from "@/components/DeliveryCard";
 import Navigation from "@/components/Navigation";
 import OrderSummary from "@/components/OrderSummary";
+import SuccessfulPayment from "@/components/SuccessfulPayment";
 import { CartContext } from "@/store/CartContext";
 import ProductType from "@/types/ProductType";
 import axios from "axios";
@@ -27,7 +28,7 @@ export default function CartPage() {
 
   if (domLoaded && window.location.href.includes("success")) {
     clearCart();
-    return <div>Successful payment</div>;
+    return <SuccessfulPayment />;
   }
 
   return (
