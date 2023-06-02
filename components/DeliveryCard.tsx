@@ -58,40 +58,8 @@ const DeliveryCard = () => {
           value={mobile}
           onChange={(e) => setMobile(e.target.value)}
         />
-        <label>Address</label>
-        <input
-          type="text"
-          placeholder="Address"
-          name="address"
-          value={address}
-          onChange={(e) => setAddress(e.target.value)}
-        />
-        <label>Postal Code</label>
-        <input
-          type="text"
-          placeholder="Postal Code"
-          name="postal-code"
-          value={postalCode}
-          onChange={(e) => setPostalCode(e.target.value)}
-        />
-        <label>City</label>
-        <input
-          type="text"
-          placeholder="City"
-          name="city"
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-        />
-        <label>Country</label>
-        <input
-          type="text"
-          placeholder="Country"
-          name="country"
-          value={country}
-          onChange={(e) => setCountry(e.target.value)}
-        />
         <button className="btn-primary mt-5 w-full" onClick={proceedToPayment}>
-          Proceed to Payment
+          Proceed to Checkout
         </button>
       </div>
     </div>
