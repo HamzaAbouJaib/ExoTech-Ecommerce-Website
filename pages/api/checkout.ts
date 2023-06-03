@@ -1,4 +1,5 @@
 import { mongooseConnect } from "@/lib/mongoose";
+import { Customer } from "@/models/Customer";
 import { Order } from "@/models/Order";
 import { Product } from "@/models/Product";
 import { NextApiRequest, NextApiResponse } from "next";
@@ -62,6 +63,11 @@ export default async function handler(
     paid: false,
     status: "Todo",
   });
+
+  await Customer.findOneAndUpdate(
+    { email },
+    { $push: { orders: orderDoc._id } }
+  );
 
   const session = await stripe.checkout.sessions.create({
     shipping_address_collection: {
