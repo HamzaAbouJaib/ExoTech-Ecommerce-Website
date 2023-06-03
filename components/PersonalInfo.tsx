@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
 import AccountForm from "./AccountForm";
 
 type CustomerType = {
@@ -21,12 +20,6 @@ const PersonalInfo = () => {
       setCustomer(response.data);
     });
   }, [session]);
-
-  const {
-    handleSubmit,
-    register,
-    formState: { errors },
-  } = useForm({ defaultValues: customer });
 
   return (
     <div className="text-lg">
