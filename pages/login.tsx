@@ -29,15 +29,15 @@ export default function LoginPage() {
               type="email"
               placeholder="guest@example.com"
               autoFocus={true}
-              className="w-full text-lg border-2 border-gray-200 py-1 px-3 rounded-md focus:outline-none focusborder-gray-500"
+              className="w-full text-lg border-2 border-gray-200 py-1 px-3 rounded-md focus:outline-none focus:border-gray-500"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <label className="font-semibold mt-2  text-lg">Password</label>
+            <label className="font-semibold mt-2 text-lg">Password</label>
             <input
               type="password"
               placeholder="password"
-              className="w-full text-lg border-2 border-gray-200 py-1 px-3 rounded-md focus:outline-none focusborder-gray-500"
+              className="w-full text-lg border-2 border-gray-200 py-1 px-3 rounded-md focus:outline-none focus:border-gray-500"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
