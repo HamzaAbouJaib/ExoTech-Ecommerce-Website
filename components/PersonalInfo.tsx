@@ -8,6 +8,7 @@ type CustomerType = {
   name: string;
   email: string;
   mobile: string;
+  orders: string[];
 };
 
 const PersonalInfo = () => {
@@ -27,9 +28,7 @@ const PersonalInfo = () => {
         Personal Information
       </h1>
       <p className="text-gray-600 mb-2">Manage you personal information</p>
-      {customer && (
-        <AccountForm preloaded={customer} />
-      )}
+      {customer && <AccountForm preloaded={customer} />}
     </div>
   );
 };
