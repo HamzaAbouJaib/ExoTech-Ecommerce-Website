@@ -8,10 +8,6 @@ const DeliveryCard = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [mobile, setMobile] = useState("");
-  const [city, setCity] = useState("");
-  const [country, setCountry] = useState("");
-  const [address, setAddress] = useState("");
-  const [postalCode, setPostalCode] = useState("");
 
   const [emptyName, setEmptyName] = useState(false);
   const [emptyEmail, setEmptyEmail] = useState(false);
@@ -31,10 +27,6 @@ const DeliveryCard = () => {
       name,
       email,
       mobile,
-      city,
-      postalCode,
-      country,
-      address,
       cartProducts,
     });
 
