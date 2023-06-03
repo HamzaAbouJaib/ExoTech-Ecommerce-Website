@@ -59,10 +59,6 @@ export default async function handler(
     name,
     email,
     mobile,
-    address,
-    postalCode,
-    city,
-    country,
     paid: false,
     status: "Todo",
   });
