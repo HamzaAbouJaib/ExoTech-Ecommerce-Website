@@ -1,12 +1,11 @@
 import { CartContext } from "@/store/CartContext";
 import Link from "next/link";
-import { useContext, useState } from "react";
-import { useRouter } from "next/router";
+import { useContext } from "react";
+import { useSession } from "next-auth/react";
 
-const Navigation = ({ setIsSearching }: any) => {
+const Navigation = () => {
   const { cartProducts } = useContext(CartContext);
-  const [search, setSearch] = useState("");
-  const router = useRouter();
+  const { status, data: session } = useSession();
 
   return (
     <div className="fixed bg-slate-900 w-full p-6 text-white shadow-md">
@@ -44,7 +43,26 @@ const Navigation = ({ setIsSearching }: any) => {
           </Link>
         </div>
         <div className="text-xl flex items-end gap-6">
-          <p>Login/Register</p>
+          <Link
+            href={status === "authenticated" ? "/account" : "/login"}
+            className="flex items-center gap-1"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+              />
+            </svg>
+            {status === "authenticated" ? session.user.name : "Login"}
+          </Link>
           <Link href={"/cart"} className="relative flex items-center gap-2">
             <span className="bg-red-600 flex justify-center items-center w-5 h-5 text-base font-semibold rounded-[50%] leading-none absolute -top-2 left-3">
               {cartProducts.length}
