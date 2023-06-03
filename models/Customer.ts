@@ -6,6 +6,7 @@ const CustomerSchema = new Schema(
     email: { type: String, required: true, unique: true },
     mobile: String,
     password: { type: String, required: true },
+    orders: [{ type: mongoose.Types.ObjectId, ref: "Order" }],
   },
   { timestamps: true }
 );
