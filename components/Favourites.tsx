@@ -7,6 +7,7 @@ import ProductCard from "./ProductCard";
 const Favourites = () => {
   const { data: session } = useSession();
   const [favouriteProducts, setFavouriteProducts] = useState<ProductType[]>();
+  const [favouritesChanged, setFavouritesChanged] = useState(false);
 
   useEffect(() => {
     if (!session) return;
@@ -17,14 +18,17 @@ const Favourites = () => {
           setFavouriteProducts(res.data);
         });
     });
-  }, [session]);
+  }, [session, favouritesChanged]);
 
   return (
     <div>
       {favouriteProducts?.length > 0 ? (
         <div className="grid grid-cols-3 gap-10">
           {favouriteProducts.map((product) => (
-            <ProductCard {...product} />
+            <ProductCard
+              {...product}
+              setFavouritesChanged={setFavouritesChanged}
+            />
           ))}
         </div>
       ) : (
