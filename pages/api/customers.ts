@@ -19,6 +19,16 @@ export default async function handler(
     }
   }
 
+  if (method === "DELETE") {
+    const { email, favourite } = req.query;
+    if (!favourite) return;
+    const CustomerDoc = await Customer.findOneAndUpdate(
+      { email },
+      { $pull: { favourites: favourite } }
+    );
+    res.json(CustomerDoc);
+  }
+
   if (method === "PUT") {
     const { _id, name, email, mobile, password, favourite } = req.body;
     let CustomerDoc;
