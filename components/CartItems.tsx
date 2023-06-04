@@ -2,7 +2,7 @@ import { CartContext } from "@/store/CartContext";
 import ProductType from "@/types/ProductType";
 import { useContext } from "react";
 
-const OrderSummary = ({ products }: { products: ProductType[] }) => {
+const CartItems = ({ products }: { products: ProductType[] }) => {
   const { cartProducts, addProductToCart, removeProductFromCart, clearCart } =
     useContext(CartContext);
 
@@ -117,4 +117,4 @@ const OrderSummary = ({ products }: { products: ProductType[] }) => {
   );
 };
 
-export default OrderSummary;
+export default CartItems;
