@@ -1,8 +1,10 @@
 import ProductType from "@/types/ProductType";
 import Link from "next/link";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import CardPrice from "./CardPrice";
 import { CartContext } from "@/store/CartContext";
+import { useSession } from "next-auth/react";
+import axios from "axios";
 
 const ProductCard = ({
   _id,
@@ -13,6 +15,24 @@ const ProductCard = ({
   discount,
 }: ProductType) => {
   const { addProductToCart } = useContext(CartContext);
+  const { data: session } = useSession();
+  const [favourites, setFavourites] = useState<string[]>();
+
+  useEffect(() => {
+    if (!session) return;
+    axios.get("/api/customers?email=" + session.user.email).then((response) => {
+      setFavourites(response.data.favourites);
+    });
+  }, [session]);
+
+  function isFavourite() {
+    if (!favourites) return false;
+    return favourites?.includes(_id);
+  }
+
+  async function favouriteProduct() {
+    axios.put("/api/customers", { email: session.user.email, favourite: _id });
+  }
 
   return (
     <div className="flex flex-col justify-between">
@@ -23,7 +43,11 @@ const ProductCard = ({
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-6 h-6 absolute top-3 right-3 cursor-pointer hover:text-red-600"
+          className={
+            "w-6 h-6 absolute top-3 right-3 cursor-pointer text-red-600 hover:fill-red-600 duration-500 " +
+            (isFavourite() && "fill-red-600")
+          }
+          onClick={favouriteProduct}
         >
           <path
             strokeLinecap="round"
