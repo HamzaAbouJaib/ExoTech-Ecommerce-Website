@@ -1,3 +1,4 @@
+import Favourites from "@/components/Favourites";
 import Navigation from "@/components/Navigation";
 import OrderHistory from "@/components/OrderHistory";
 import PersonalInfo from "@/components/PersonalInfo";
@@ -41,10 +42,19 @@ export default function AccountPage() {
             >
               Order History
             </p>
+            <p
+              className={`cursor-pointer w-max  ${
+                active === "favourites" && "text-primary"
+              }`}
+              onClick={() => setActive("favourites")}
+            >
+              Favourites
+            </p>
           </div>
           <div className="col-span-3">
             {active === "personal" && <PersonalInfo />}
             {active === "orders" && <OrderHistory />}
+            {active === "favourites" && <Favourites />}
           </div>
         </div>
       </div>
