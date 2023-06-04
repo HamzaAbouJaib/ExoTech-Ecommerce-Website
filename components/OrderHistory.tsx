@@ -25,7 +25,6 @@ const OrderHistory = () => {
     if (!session) return;
     axios.get("/api/customers?email=" + session.user.email).then((response) => {
       axios.post("/api/orders", { ids: response.data.orders }).then((res) => {
-        console.log(res.data);
         setOrders(res.data);
       });
     });
