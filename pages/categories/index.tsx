@@ -1,5 +1,5 @@
 import CategoryDisplayGrid from "@/components/CategoryDisplayGrid";
-import Navigation from "@/components/Navigation";
+import Layout from "@/components/Layout";
 import { getCategoryProducts } from "@/lib/getCategoryProducts";
 import CategoryType from "@/types/CategoryType";
 import ProductType from "@/types/ProductType";
@@ -10,9 +10,8 @@ export default function categories({
   categoryProducts: { category: CategoryType; products: ProductType[] }[];
 }) {
   return (
-    <>
-      <Navigation />
-      <div className="w-[80%] m-auto mb-10 pt-20">
+    <Layout>
+      <div className="w-[80%] m-auto mb-10 pt-20 min-h-screen">
         {categoryProducts.map((categoryProduct) => {
           if (categoryProduct?.products.length > 0) {
             return (
@@ -25,7 +24,7 @@ export default function categories({
           }
         })}
       </div>
-    </>
+    </Layout>
   );
 }
 

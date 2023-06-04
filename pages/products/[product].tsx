@@ -1,4 +1,3 @@
-import Navigation from "@/components/Navigation";
 import ProductImages from "@/components/ProductImages";
 import ProductInfo from "@/components/ProductInfo";
 import { mongooseConnect } from "@/lib/mongoose";
@@ -7,6 +6,7 @@ import ProductType from "@/types/ProductType";
 import { Category } from "@/models/Category";
 import ProductsGrid from "@/components/ProductsGrid";
 import { getCategoryProducts } from "@/lib/getCategoryProducts";
+import Layout from "@/components/Layout";
 
 export default function ProductPage({
   product,
@@ -16,16 +16,15 @@ export default function ProductPage({
   similarProducts: ProductType[];
 }) {
   return (
-    <>
-      <Navigation />
-      <div className="w-[80%] m-auto mb-10 pt-20">
+    <Layout>
+      <div className="w-[80%] m-auto mb-10 pt-20 min-h-screen">
         <div className="mt-32 grid grid-cols-2 gap-32">
           <ProductImages images={product?.images} name={product?.name} />
           <ProductInfo product={product} />
         </div>
         <ProductsGrid title={"Similar Products"} products={similarProducts} />
       </div>
-    </>
+    </Layout>
   );
 }
 

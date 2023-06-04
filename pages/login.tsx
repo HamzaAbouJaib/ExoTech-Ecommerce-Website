@@ -1,9 +1,9 @@
-import Navigation from "@/components/Navigation";
 import Link from "next/link";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import Layout from "@/components/Layout";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -17,9 +17,8 @@ export default function LoginPage() {
   }
 
   return (
-    <>
-      <Navigation />
-      <div className="w-[80%] m-auto mb-10 pt-48">
+    <Layout>
+      <div className="w-[80%] m-auto mb-10 pt-48 min-h-screen">
         <div className={"w-[70%] md:w-[50%] lg:w-[30%] xl:w-[40%] m-auto"}>
           <h2 className="text-3xl font-semibold mb-2">Login</h2>
           <hr className={"w-full border-gray-500"}></hr>
@@ -64,6 +63,6 @@ export default function LoginPage() {
           </div>
         </div>
       </div>
-    </>
+    </Layout>
   );
 }

@@ -1,19 +1,16 @@
 import Favourites from "@/components/Favourites";
-import Navigation from "@/components/Navigation";
+import Layout from "@/components/Layout";
 import OrderHistory from "@/components/OrderHistory";
 import PersonalInfo from "@/components/PersonalInfo";
-import { useSession, signOut } from "next-auth/react";
+import {  signOut } from "next-auth/react";
 import { useState } from "react";
 
 export default function AccountPage() {
-  const { data: session } = useSession();
-
   const [active, setActive] = useState("personal");
 
   return (
-    <>
-      <Navigation />
-      <div className="w-[80%] m-auto mb-10 pt-20">
+    <Layout>
+      <div className="w-[80%] m-auto mb-10 pt-20 min-h-screen">
         <div className="mt-20 flex justify-between items-center mb-5">
           <h2 className="text-3xl font-semibold">Account Information</h2>
           <button
@@ -58,6 +55,6 @@ export default function AccountPage() {
           </div>
         </div>
       </div>
-    </>
+    </Layout>
   );
 }

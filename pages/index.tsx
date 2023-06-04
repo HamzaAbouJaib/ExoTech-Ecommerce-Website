@@ -1,5 +1,5 @@
 import LandingPage from "@/components/LandingPage";
-import Navigation from "@/components/Navigation";
+import Layout from "@/components/Layout";
 import ProductsGrid from "@/components/ProductsGrid";
 import TodaysDeals from "@/components/TodaysDeals";
 import { mongooseConnect } from "@/lib/mongoose";
@@ -14,14 +14,13 @@ export default function Home({
   recentProducts: ProductType[];
 }) {
   return (
-    <>
-      <Navigation />
+    <Layout>
       <LandingPage />
-      <div className="w-[80%] m-auto mb-10">
+      <div className="w-[80%] m-auto mb-10 min-h-screen">
         <TodaysDeals newDeals={newDeals} />
         <ProductsGrid title={"New Arrivals"} products={recentProducts} />
       </div>
-    </>
+    </Layout>
   );
 }
 
@@ -36,7 +35,7 @@ export async function getServerSideProps() {
     null,
     {
       sort: { _id: -1 },
-      limit: 6,
+      limit: 4,
     }
   );
   return {

@@ -1,11 +1,11 @@
 import OrderSummary from "@/components/OrderSummary";
-import Navigation from "@/components/Navigation";
 import CartItems from "@/components/CartItems";
 import SuccessfulPayment from "@/components/SuccessfulPayment";
 import { CartContext } from "@/store/CartContext";
 import ProductType from "@/types/ProductType";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
+import Layout from "@/components/Layout";
 
 export default function CartPage() {
   const { cartProducts, clearCart } = useContext(CartContext);
@@ -32,15 +32,14 @@ export default function CartPage() {
   }
 
   return (
-    <>
-      <Navigation />
-      <div className="w-[80%] m-auto mb-10 pt-20">
+    <Layout>
+      <div className="w-[80%] m-auto mb-10 pt-20 min-h-screen">
         <h1 className="text-3xl font-semibold mb-7 mt-20">Cart</h1>
         <div className="grid grid-cols-3 gap-20">
           <CartItems products={products} />
           {cartProducts.length > 0 && <OrderSummary products={products} />}
         </div>
       </div>
-    </>
+    </Layout>
   );
 }

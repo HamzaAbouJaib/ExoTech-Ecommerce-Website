@@ -1,4 +1,4 @@
-import Navigation from "@/components/Navigation";
+import Layout from "@/components/Layout";
 import ProductsGrid from "@/components/ProductsGrid";
 import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/models/Product";
@@ -7,12 +7,11 @@ import React from "react";
 
 export default function hotDeals({ products }: { products: ProductType[] }) {
   return (
-    <>
-      <Navigation />
-      <div className="w-[80%] m-auto mb-10 pt-20">
+    <Layout>
+      <div className="w-[80%] m-auto mb-10 pt-20 min-h-screen">
         <ProductsGrid title={"Hot Deals!"} products={products} />
       </div>
-    </>
+    </Layout>
   );
 }
 

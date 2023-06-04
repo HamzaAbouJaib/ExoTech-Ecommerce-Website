@@ -1,4 +1,4 @@
-import Navigation from "@/components/Navigation";
+import Layout from "@/components/Layout";
 import ProductCard from "@/components/ProductCard";
 import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/models/Product";
@@ -39,9 +39,8 @@ export default function products({ products }: { products: ProductType[] }) {
   }
 
   return (
-    <>
-      <Navigation />
-      <div className="w-[80%] m-auto mb-10 pt-48">
+    <Layout>
+      <div className="w-[80%] m-auto mb-10 pt-48 min-h-screen">
         <input
           type="text"
           placeholder="Search..."
@@ -51,7 +50,7 @@ export default function products({ products }: { products: ProductType[] }) {
         />
         {searchValue !== "" && searchResults()}
       </div>
-    </>
+    </Layout>
   );
 }
 
