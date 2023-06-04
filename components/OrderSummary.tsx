@@ -15,7 +15,7 @@ const OrderSummary = ({ products }: { products: ProductType[] }) => {
 
   return (
     <div className="border border-gray-300 shadow-md p-10 rounded-xl col-span-2">
-      <h3 className="mb-1 font-semibold text-gray-800">Order Summary</h3>
+      <h3 className="mb-1 font-semibold text-gray-800">Cart Items</h3>
       {cartProducts?.length > 0 ? (
         <>
           <table className="w-full ">
@@ -109,22 +109,6 @@ const OrderSummary = ({ products }: { products: ProductType[] }) => {
               ))}
             </tbody>
           </table>
-          <div className="text-xl font-semibold flex items-center justify-between px-1 border-t-2 border-gray-300 mt-2 pt-2">
-            <p className="text-gray-500">Subtotal</p>
-            <p className="pr-9">
-              CA${new Intl.NumberFormat("en-US").format(total)}
-            </p>
-          </div>
-          <div className="text-xl font-semibold flex items-center justify-between px-1 border-t border-gray-300 mt-2 pt-2">
-            <p className="text-gray-500">Shipping</p>
-            <p className="pr-9">CA$50.00</p>
-          </div>
-          <div className="text-xl font-semibold flex items-center justify-between px-1 border-t border-gray-300 mt-2 pt-2">
-            <p className="text-gray-500">Total</p>
-            <p className="pr-9">
-              CA${new Intl.NumberFormat("en-US").format(total + 50)}
-            </p>
-          </div>
         </>
       ) : (
         <div className="text-xl">Your Cart is Empty</div>
