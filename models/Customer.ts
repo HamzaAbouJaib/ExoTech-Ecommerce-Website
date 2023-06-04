@@ -7,6 +7,7 @@ const CustomerSchema = new Schema(
     mobile: String,
     password: { type: String, required: true },
     orders: [{ type: mongoose.Types.ObjectId, ref: "Order" }],
+    favourites: [{ type: mongoose.Types.ObjectId, ref: "Product" }],
   },
   { timestamps: true }
 );
