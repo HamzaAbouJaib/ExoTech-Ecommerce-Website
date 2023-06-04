@@ -33,7 +33,7 @@ const OrderHistory = () => {
 
   return (
     <div>
-      {orders?.length > 0 && (
+      {orders?.length > 0 ? (
         <table className="order-table">
           <thead>
             <tr>
@@ -74,6 +74,8 @@ const OrderHistory = () => {
             ))}
           </tbody>
         </table>
+      ) : (
+        <div className="text-xl">You have no past orders</div>
       )}
     </div>
   );
