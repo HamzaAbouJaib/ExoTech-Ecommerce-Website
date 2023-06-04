@@ -67,13 +67,14 @@ const ProductCard = ({
       <div className="pb-5 flex flex-col gap-3 relative">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          fill="none"
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
           className={
-            "w-6 h-6 absolute top-3 right-3 cursor-pointer text-red-600 hover:fill-red-600 duration-500 " +
-            (isFavourite() && "fill-red-600 hover:fill-none")
+            "w-6 h-6 absolute top-3 right-3 cursor-pointer text-red-600 transition- duration-500 ease-out " +
+            (isFavourite()
+              ? "fill-red-600 hover:fill-gray-100"
+              : "fill-gray-100 hover:fill-red-600")
           }
           onClick={favouriteProduct}
         >
