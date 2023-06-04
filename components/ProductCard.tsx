@@ -1,10 +1,22 @@
-import ProductType from "@/types/ProductType";
 import Link from "next/link";
 import React, { useContext, useEffect, useState } from "react";
 import CardPrice from "./CardPrice";
 import { CartContext } from "@/store/CartContext";
 import { useSession } from "next-auth/react";
 import axios from "axios";
+
+type ProductCardType = {
+  _id: string;
+  name: string;
+  description: string;
+  brand: string;
+  price: string;
+  category: string;
+  properties: { [key: string]: string };
+  images: string[];
+  discount: string;
+  setFavouritesChanged?: (state: boolean) => void;
+};
 
 const ProductCard = ({
   _id,
@@ -13,17 +25,22 @@ const ProductCard = ({
   price,
   images,
   discount,
-}: ProductType) => {
+  setFavouritesChanged,
+}: ProductCardType) => {
   const { addProductToCart } = useContext(CartContext);
   const { data: session } = useSession();
   const [favourites, setFavourites] = useState<string[]>();
 
   useEffect(() => {
     if (!session) return;
+    fetchFavourites();
+  }, [session]);
+
+  function fetchFavourites() {
     axios.get("/api/customers?email=" + session.user.email).then((response) => {
       setFavourites(response.data.favourites);
     });
-  }, [session]);
+  }
 
   function isFavourite() {
     if (!favourites) return false;
@@ -31,7 +48,18 @@ const ProductCard = ({
   }
 
   async function favouriteProduct() {
-    axios.put("/api/customers", { email: session.user.email, favourite: _id });
+    if (isFavourite()) {
+      await axios.delete(
+        "/api/customers?email=" + session.user.email + "&favourite=" + _id
+      );
+    } else {
+      axios.put("/api/customers", {
+        email: session.user.email,
+        favourite: _id,
+      });
+    }
+    if (setFavouritesChanged) setFavouritesChanged(true);
+    fetchFavourites();
   }
 
   return (
@@ -45,7 +73,7 @@ const ProductCard = ({
           stroke="currentColor"
           className={
             "w-6 h-6 absolute top-3 right-3 cursor-pointer text-red-600 hover:fill-red-600 duration-500 " +
-            (isFavourite() && "fill-red-600")
+            (isFavourite() && "fill-red-600 hover:fill-none")
           }
           onClick={favouriteProduct}
         >
