@@ -50,7 +50,7 @@ const AccountForm = ({ preloaded }) => {
       },
       { keepDefaultValues: true }
     );
-    const result = await signIn("credentials", {
+    await signIn("credentials", {
       redirect: false,
       email,
       password,
@@ -79,7 +79,6 @@ const AccountForm = ({ preloaded }) => {
                 placeholder="Name"
                 id="name"
                 ref={register}
-                autoFocus={true}
                 {...register("name", {
                   required: "Please enter a name",
                 })}
