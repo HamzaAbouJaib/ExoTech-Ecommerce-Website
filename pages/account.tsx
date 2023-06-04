@@ -26,7 +26,7 @@ export default function AccountPage() {
         <div className="grid grid-cols-3 mt-12">
           <div className="text-xl font-semibold text-gray-500 flex flex-col gap-2">
             <p
-              className={`cursor-pointer ${
+              className={`cursor-pointer w-max ${
                 active === "personal" && "text-primary"
               }`}
               onClick={() => setActive("personal")}
@@ -34,7 +34,7 @@ export default function AccountPage() {
               Personal Information
             </p>
             <p
-              className={`cursor-pointer ${
+              className={`cursor-pointer w-max  ${
                 active === "orders" && "text-primary"
               }`}
               onClick={() => setActive("orders")}
