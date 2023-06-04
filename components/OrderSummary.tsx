@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import ProductType from "@/types/ProductType";
 
-const DeliveryCard = ({ products }: { products: ProductType[] }) => {
+const OrderSummary = ({ products }: { products: ProductType[] }) => {
   const { cartProducts } = useContext(CartContext);
   const { data: session } = useSession();
   const router = useRouter();
@@ -75,4 +75,4 @@ const DeliveryCard = ({ products }: { products: ProductType[] }) => {
   );
 };
 
-export default DeliveryCard;
+export default OrderSummary;
