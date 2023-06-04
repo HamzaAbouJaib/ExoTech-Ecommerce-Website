@@ -1,32 +1,40 @@
 import { CartContext } from "@/store/CartContext";
 import axios from "axios";
-import { useContext, useState } from "react";
+import { useContext } from "react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import ProductType from "@/types/ProductType";
 
-const DeliveryCard = () => {
+const DeliveryCard = ({ products }: { products: ProductType[] }) => {
   const { cartProducts } = useContext(CartContext);
+  const { data: session } = useSession();
+  const router = useRouter();
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [mobile, setMobile] = useState("");
-
-  const [emptyName, setEmptyName] = useState(false);
-  const [emptyEmail, setEmptyEmail] = useState(false);
+  let total = 0;
+  for (const productId of cartProducts) {
+    const price =
+      products.find((product) => product._id === productId)?.price || "0";
+    total += Number.parseFloat(price);
+  }
 
   async function proceedToPayment() {
-    if (name === "") {
-      setEmptyName(true);
+    if (!session) {
+      router.push("/login");
       return;
     }
 
-    if (email === "") {
-      setEmptyEmail(true);
-      return;
-    }
+    let customer;
+
+    await axios
+      .get("/api/customers?email=" + session.user.email)
+      .then((response) => {
+        customer = response.data;
+      });
 
     const response = await axios.post("/api/checkout", {
-      name,
-      email,
-      mobile,
+      name: customer.name,
+      email: customer.email,
+      mobile: customer.mobile,
       cartProducts,
     });
 
@@ -37,52 +45,28 @@ const DeliveryCard = () => {
 
   return (
     <div className="border border-gray-300 shadow-md p-10 rounded-xl h-max">
-      <h3 className="mb-1 font-semibold text-gray-800">Delivery Information</h3>
+      <h3 className="mb-1 font-semibold text-gray-800">Order Summary</h3>
       <div className="flex flex-col delivery gap-1">
-        <label>
-          Name <span className="text-red-600">*</span>
-        </label>
-        <input
-          type="text"
-          placeholder="Name"
-          name="name"
-          value={name}
-          onChange={(e) => {
-            if (e.target.value !== "") {
-              setEmptyName(false);
-            }
-            setName(e.target.value);
-          }}
-        />
-        {emptyName && (
-          <p className="text-sm text-red-600">Name field is required</p>
-        )}
-        <label>
-          Email <span className="text-red-600">*</span>
-        </label>
-        <input
-          type="email"
-          placeholder="Email"
-          name="email"
-          value={email}
-          onChange={(e) => {
-            if (e.target.value !== "") {
-              setEmptyEmail(false);
-            }
-            setEmail(e.target.value);
-          }}
-        />
-        {emptyEmail && (
-          <p className="text-sm text-red-600">Email field is required</p>
-        )}
-        <label>Mobile Number <span className="text-xs text-gray-500">(Optional)</span></label>
-        <input
-          type="text"
-          placeholder="Mobile Number"
-          name="mobile"
-          value={mobile}
-          onChange={(e) => setMobile(e.target.value)}
-        />
+        <div className="text-xl font-semibold flex items-center justify-between px-1 border-t-2 border-gray-300 mt-2 pt-2">
+          <p className="text-gray-500">Subtotal</p>
+          CA$
+          {new Intl.NumberFormat("en-US", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          }).format(total)}
+        </div>
+        <div className="text-xl font-semibold flex items-center justify-between px-1 border-t border-gray-300 mt-2 pt-2">
+          <p className="text-gray-500">Shipping</p>
+          CA$50.00
+        </div>
+        <div className="text-xl font-semibold flex items-center justify-between px-1 border-t border-gray-300 mt-2 pt-2">
+          <p className="text-gray-500">Total</p>
+          CA$
+          {new Intl.NumberFormat("en-US", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          }).format(total + 50)}
+        </div>
         <button className="btn-primary mt-5 w-full" onClick={proceedToPayment}>
           Proceed to Checkout
         </button>
