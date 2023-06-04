@@ -1,4 +1,4 @@
-import DeliveryCard from "@/components/DeliveryCard";
+import OrderSummary from "@/components/OrderSummary";
 import Navigation from "@/components/Navigation";
 import CartItems from "@/components/CartItems";
 import SuccessfulPayment from "@/components/SuccessfulPayment";
@@ -38,7 +38,7 @@ export default function CartPage() {
         <h1 className="text-3xl font-semibold mb-7 mt-20">Cart</h1>
         <div className="grid grid-cols-3 gap-20">
           <CartItems products={products} />
-          {cartProducts.length > 0 && <DeliveryCard products={products} />}
+          {cartProducts.length > 0 && <OrderSummary products={products} />}
         </div>
       </div>
     </>
