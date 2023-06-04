@@ -23,7 +23,7 @@ export default function AccountPage() {
           </button>
         </div>
         <hr className={"w-full border-gray-300"}></hr>
-        <div className="grid grid-cols-3 mt-12">
+        <div className="grid grid-cols-4 mt-12">
           <div className="text-xl font-semibold text-gray-500 flex flex-col gap-2">
             <p
               className={`cursor-pointer w-max ${
@@ -42,7 +42,7 @@ export default function AccountPage() {
               Order History
             </p>
           </div>
-          <div className="col-span-2">
+          <div className="col-span-3">
             {active === "personal" && <PersonalInfo />}
             {active === "orders" && <OrderHistory />}
           </div>
