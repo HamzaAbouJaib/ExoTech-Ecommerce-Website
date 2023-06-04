@@ -61,7 +61,7 @@ export default async function handler(
     email,
     mobile,
     paid: false,
-    status: "Todo",
+    status: "Pending",
   });
 
   await Customer.findOneAndUpdate(
