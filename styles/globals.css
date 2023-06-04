@@ -51,3 +51,19 @@ body {
 .delivery input:focus {
   @apply outline-none border-gray-500;
 }
+
+.order-table {
+  @apply text-lg;
+}
+
+.order-table thead td {
+  @apply border-b-2 border-b-gray-300 pb-2 px-16 font-semibold text-center;
+}
+
+.order-table tbody td {
+  @apply border-b-2 border-b-gray-300 py-2 px-16 text-center;
+}
+
+.order-table tbody tr:last-child td {
+  @apply border-none;
+}
