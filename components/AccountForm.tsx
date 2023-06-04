@@ -1,7 +1,7 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { signIn, useSession, signOut } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 
 const AccountForm = ({ preloaded }) => {
   const [savedChanges, setSavedChanges] = useState(false);
@@ -28,6 +28,8 @@ const AccountForm = ({ preloaded }) => {
     password,
     confirmPassword,
   }) => {
+    if (password === "" || confirmPassword === "") return;
+
     await axios.put("/api/customers", {
       _id: preloaded._id,
       name,
@@ -174,11 +176,7 @@ const AccountForm = ({ preloaded }) => {
           </tr>
         </tbody>
       </table>
-      <button
-        className="btn-primary mt-3"
-      >
-        Save Changes
-      </button>
+      <button className="btn-primary mt-3">Save Changes</button>
     </form>
   );
 };
