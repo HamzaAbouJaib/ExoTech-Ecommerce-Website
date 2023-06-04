@@ -1,6 +1,7 @@
 import { CartContext } from "@/store/CartContext";
 import ProductType from "@/types/ProductType";
 import { useContext } from "react";
+import Link from "next/link";
 
 const CartItems = ({ products }: { products: ProductType[] }) => {
   const { cartProducts, addProductToCart, removeProductFromCart, clearCart } =
@@ -111,7 +112,9 @@ const CartItems = ({ products }: { products: ProductType[] }) => {
           </table>
         </>
       ) : (
-        <div className="text-xl">Your Cart is Empty</div>
+        <div className="text-xl">
+          Your Cart is Empty. <Link className="text-primary hover:underline underline-offset-2" href={"/products"}>Go Shopping</Link>
+        </div>
       )}
     </div>
   );
