@@ -20,16 +20,24 @@ export default async function handler(
   }
 
   if (method === "PUT") {
-    const { _id, name, email, mobile, password } = req.body;
-    const CustomerDoc = await Customer.updateOne(
-      { _id },
-      {
-        name,
-        email,
-        mobile,
-        password: bcrypt.hashSync(password),
-      }
-    );
+    const { _id, name, email, mobile, password, favourite } = req.body;
+    let CustomerDoc;
+    if (favourite) {
+      CustomerDoc = await Customer.findOneAndUpdate(
+        { email },
+        { $push: { favourites: favourite } }
+      );
+    } else {
+      CustomerDoc = await Customer.updateOne(
+        { _id },
+        {
+          name,
+          email,
+          mobile,
+          password: bcrypt.hashSync(password),
+        }
+      );
+    }
     res.json(CustomerDoc);
   }
 
