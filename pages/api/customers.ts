@@ -32,4 +32,20 @@ export default async function handler(
     );
     res.json(CustomerDoc);
   }
+
+  if (method === "POST") {
+    const { name, email, mobile, password } = req.body;
+    const existingCustomer = await Customer.findOne({ email: email });
+    if (existingCustomer) {
+      res.status(422).json({ message: "User exists already!" });
+      return;
+    }
+    const CustomerDoc = await Customer.create({
+      name,
+      email,
+      mobile,
+      password: bcrypt.hashSync(password),
+    });
+    res.json(CustomerDoc);
+  }
 }
