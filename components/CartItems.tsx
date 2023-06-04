@@ -7,13 +7,6 @@ const CartItems = ({ products }: { products: ProductType[] }) => {
   const { cartProducts, addProductToCart, removeProductFromCart, clearCart } =
     useContext(CartContext);
 
-  let total = 0;
-  for (const productId of cartProducts) {
-    const price =
-      products.find((product) => product._id === productId)?.price || "0";
-    total += Number.parseFloat(price);
-  }
-
   return (
     <div className="border border-gray-300 shadow-md p-10 rounded-xl col-span-2">
       <h3 className="mb-1 font-semibold text-gray-800">Cart Items</h3>
