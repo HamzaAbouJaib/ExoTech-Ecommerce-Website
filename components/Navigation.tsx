@@ -8,7 +8,7 @@ const Navigation = () => {
   const { status, data: session } = useSession();
 
   return (
-    <div className="fixed bg-slate-900 w-full p-6 text-white shadow-md">
+    <div className="fixed bg-slate-900 w-full p-6 text-white shadow-md z-10">
       <div className="w-[80%] flex justify-between items-center m-auto">
         <div className="text-2xl">Tech Store</div>
         <div className="text-xl flex items-center gap-10">
