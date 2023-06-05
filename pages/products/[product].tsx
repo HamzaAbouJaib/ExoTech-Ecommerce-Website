@@ -17,8 +17,8 @@ export default function ProductPage({
 }) {
   return (
     <Layout>
-      <div className="w-[80%] m-auto mb-10 pt-20 min-h-screen">
-        <div className="mt-32 grid grid-cols-2 gap-32">
+      <div className="w-[80%] m-auto mb-10 lg:pt-20 pt-1 min-h-screen">
+        <div className="mt-32 grid lg:grid-cols-2 gap-32">
           <ProductImages images={product?.images} name={product?.name} />
           <ProductInfo product={product} />
         </div>
