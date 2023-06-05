@@ -1,11 +1,10 @@
 import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { signIn, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 
 const AccountForm = ({ preloaded }) => {
   const [savedChanges, setSavedChanges] = useState(false);
-  const { data: session } = useSession();
 
   const {
     handleSubmit,
@@ -69,7 +68,7 @@ const AccountForm = ({ preloaded }) => {
             </p>
           )}
       </p>
-      <table className="border-separate border-spacing-y-4">
+      <table className="border-separate border-spacing-y-4 account-table">
         <tbody>
           <tr>
             <td className="font-semibold">Name</td>
@@ -110,7 +109,7 @@ const AccountForm = ({ preloaded }) => {
             </td>
           </tr>
           <tr>
-            <td className="pr-16 font-semibold">Phone Number</td>
+            <td className="lg:pr-16 font-semibold">Phone Number</td>
             <td>
               <input
                 className="w-full text-lg border-2 border-gray-200 py-1 px-3 rounded-md focus:outline-none focus:border-gray-500"
@@ -129,8 +128,8 @@ const AccountForm = ({ preloaded }) => {
             </td>
           </tr>
           <tr>
-            <td className="pr-16 font-semibold">Reset Password</td>
-            <td className="pt-10">
+            <td className="lg:pr-16 font-semibold">Reset Password</td>
+            <td className="lg:pt-10">
               <label>New Password</label>
               <input
                 className="w-full text-lg border-2 border-gray-200 py-1 px-3 rounded-md focus:outline-none focus:border-gray-500"
