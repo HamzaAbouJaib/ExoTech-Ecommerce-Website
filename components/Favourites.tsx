@@ -23,7 +23,7 @@ const Favourites = () => {
   return (
     <div>
       {favouriteProducts?.length > 0 ? (
-        <div className="grid grid-cols-3 gap-10">
+        <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-10">
           {favouriteProducts.map((product) => (
             <ProductCard
               {...product}
