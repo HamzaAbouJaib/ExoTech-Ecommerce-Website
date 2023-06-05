@@ -68,7 +68,7 @@ const ProductImages = ({
           </svg>
         </button>
         <div
-          className="flex items-center gap-4 w-[500px] scrollable"
+          className="flex gap-4 w-[500px] scrollable"
           ref={slideRef}
           // draggable={true}
           // onDragStart={onDragStart}
@@ -78,22 +78,7 @@ const ProductImages = ({
           {images?.map((img) => (
             <div
               key={img}
-              className={`min-w-[100px] h-[100px] p-2 rounded-lg flex justify-center items-center border-2 border-gray-200 cursor-pointer ${
-                img === activeImage && activeStyling
-              }`}
-              onClick={() => setActiveImage(img)}
-            >
-              <img
-                className="pointer-events-none h-max w-max"
-                src={img}
-                alt={name + " image"}
-              />
-            </div>
-          ))}
-          {images?.map((img) => (
-            <div
-              key={img}
-              className={`min-w-[100px] h-[100px] p-2 rounded-lg flex justify-center items-center border-2 border-gray-200 cursor-pointer ${
+              className={`min-w-[100px] max-w-[100px] h-[100px] p-2 rounded-lg flex justify-center items-center border-2 border-gray-200 cursor-pointer ${
                 img === activeImage && activeStyling
               }`}
               onClick={() => setActiveImage(img)}
