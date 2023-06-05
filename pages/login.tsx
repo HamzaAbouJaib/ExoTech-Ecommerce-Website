@@ -8,12 +8,28 @@ import Layout from "@/components/Layout";
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const { status } = useSession();
   const router = useRouter();
 
   if (status && status === "authenticated") {
     router.push("/");
+  }
+
+  async function logIn() {
+    try {
+      const result = await signIn("credentials", {
+        redirect: false,
+        email,
+        password,
+      });
+      if (result.error) {
+        setError(result.error);
+      }
+    } catch (err) {
+      setError(err.response.data.message);
+    }
   }
 
   return (
@@ -30,7 +46,10 @@ export default function LoginPage() {
               autoFocus={true}
               className="w-full text-lg border-2 border-gray-200 py-1 px-3 rounded-md focus:outline-none focus:border-gray-500"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                setError("");
+              }}
             />
             <label className="font-semibold mt-2 text-lg">Password</label>
             <input
@@ -38,16 +57,17 @@ export default function LoginPage() {
               placeholder="password"
               className="w-full text-lg border-2 border-gray-200 py-1 px-3 rounded-md focus:outline-none focus:border-gray-500"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                setError("");
+              }}
             />
+            <p className="text-red-600 text-lg">
+              {error === "CredentialsSignin" && "Invalid Credentials"}
+            </p>
             <button
               className="bg-primary px-4 py-2 rounded-md font-semibold text-white hover:bg-primary/90 duration-500 w-max mt-4 mb-2 text-lg"
-              onClick={() =>
-                signIn("credentials", {
-                  email,
-                  password,
-                })
-              }
+              onClick={logIn}
             >
               Login
             </button>
