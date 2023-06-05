@@ -17,6 +17,7 @@ const CategoryDisplayGrid = ({
 }: CategoryDisplayGridType) => {
   const [properties, setProperties] = useState<{ [key: string]: string }>({});
   const [products, setProducts] = useState(unfilteredProducts);
+  const [opened, setOpened] = useState(false);
 
   function setProductProperty(name: string, value: string) {
     setProperties((prev) => {
@@ -96,20 +97,50 @@ const CategoryDisplayGrid = ({
 
   return (
     <div className="mt-20">
-      <div className="flex">
-        <div className="flex gap-4 items-baseline w-full">
+      <div className="flex flex-col mb-10">
+        <div
+          className={
+            "flex gap-4 items-baseline w-full " + (!link && "justify-between")
+          }
+        >
           <h1 className="text-3xl font-semibold mb-7">{category?.name} </h1>
           {link && (
             <Link className="text-lg text-primary underline" href={link}>
               View More
             </Link>
           )}
+          {!link && (
+            <button
+              className=" bg-gray-100 flex gap-2 items-center h-max w-max px-6 py-2 text-lg rounded-lg"
+              onClick={() => setOpened((prev) => !prev)}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75"
+                />
+              </svg>
+              Filters
+            </button>
+          )}
         </div>
-
         {!link && (
-          <div className="flex gap-5">
+          <div
+            className={
+              "flex gap-5 flex-wrap max-lg:border-b-2 max-lg:pb-3 " +
+              (opened ? "" : "hidden")
+            }
+          >
             {category?.properties.map((p) => (
-              <div className="bg-gray-100 flex items-center h-max px-6 py-2 gap-5 text-lg rounded-lg">
+              <div className="bg-gray-100 flex items-center h-max w-max px-6 py-2 gap-5 text-lg rounded-lg">
                 <label className="capitalize">{p.name}:</label>
                 <select
                   className="bg-gray-100"
@@ -127,7 +158,7 @@ const CategoryDisplayGrid = ({
                 </select>
               </div>
             ))}
-            <div className="bg-gray-100 flex items-center h-max px-6 py-2 gap-5 text-lg rounded-lg">
+            <div className="bg-gray-100 flex items-center h-max w-max px-6 py-2 gap-5 text-lg rounded-lg">
               <label className="">Sort By:</label>
               <select
                 className="bg-gray-100"
