@@ -37,7 +37,7 @@ const Navigation = () => {
           <span className="bar bar3"></span>
         </div>
         <div
-          className={`lg:flex lg:justify-between lg:ml-0 xl:ml-24 max-lg:pl-20 max-md:pl-16 max-sm:pl-12 lg:pb-0 pb-10 bg-slate-900 absolute max-lg:shadow-xl lg:static z-30 left-0 w-full max-lg:transition-top max-lg:duration-1000 max-lg:ease-in-out ${
+          className={`lg:flex lg:justify-between max-lg:ml-0 lg:ml-5 xl:ml-24 max-lg:pl-20 max-md:pl-16 max-sm:pl-12 lg:pb-0 pb-10 bg-slate-900 absolute max-lg:shadow-xl lg:static z-30 left-0 w-full max-lg:transition-top max-lg:duration-1000 max-lg:ease-in-out ${
             opened ? "top-20 " : "top-[-490px]"
           }`}
         >
