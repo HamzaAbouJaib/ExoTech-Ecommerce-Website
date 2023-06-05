@@ -19,7 +19,7 @@ export default function LoginPage() {
   return (
     <Layout>
       <div className="w-[80%] m-auto mb-10 pt-48 min-h-screen">
-        <div className={"w-[70%] md:w-[50%] lg:w-[30%] xl:w-[40%] m-auto"}>
+        <div className={"w-full md:w-[70%] lg:w-[50%] xl:w-[40%] m-auto"}>
           <h2 className="text-3xl font-semibold mb-2">Login</h2>
           <hr className={"w-full border-gray-500"}></hr>
           <div className="mt-2 flex flex-col gap-1">
