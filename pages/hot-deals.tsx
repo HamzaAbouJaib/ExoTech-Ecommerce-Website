@@ -8,7 +8,7 @@ import React from "react";
 export default function hotDeals({ products }: { products: ProductType[] }) {
   return (
     <Layout>
-      <div className="w-[80%] m-auto mb-10 pt-20 min-h-screen">
+      <div className="w-[80%] m-auto mb-10 lg:pt-20 pt-10 min-h-screen">
         <ProductsGrid title={"Hot Deals!"} products={products} />
       </div>
     </Layout>

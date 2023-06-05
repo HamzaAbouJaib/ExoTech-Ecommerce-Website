@@ -7,7 +7,7 @@ import ProductType from "@/types/ProductType";
 export default function products({ products }: { products: ProductType[] }) {
   return (
     <Layout>
-      <div className="w-[80%] m-auto mb-10 pt-20 min-h-screen">
+      <div className="w-[80%] m-auto mb-10 lg:pt-20 pt-10 min-h-screen">
         <ProductsGrid title={"All Products"} products={products} />
       </div>
     </Layout>

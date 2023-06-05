@@ -11,7 +11,7 @@ export default function categories({
 }) {
   return (
     <Layout>
-      <div className="w-[80%] m-auto mb-10 pt-20 min-h-screen">
+      <div className="w-[80%] m-auto mb-10 lg:pt-20 pt-10 min-h-screen">
         {categoryProducts.map((categoryProduct) => {
           if (categoryProduct?.products.length > 0) {
             return (

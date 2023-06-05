@@ -10,7 +10,7 @@ export default function AccountPage() {
 
   return (
     <Layout>
-      <div className="w-[80%] m-auto mb-10 pt-20 min-h-screen">
+      <div className="w-[80%] m-auto mb-10 lg:pt-20 pt-10 min-h-screen">
         <div className="mt-20 flex justify-between items-center mb-5">
           <h2 className="text-3xl font-semibold">Account Information</h2>
           <button

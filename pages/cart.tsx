@@ -33,7 +33,7 @@ export default function CartPage() {
 
   return (
     <Layout>
-      <div className="w-[80%] m-auto mb-10 pt-20 min-h-screen">
+      <div className="w-[80%] m-auto mb-10 lg:pt-20 pt-10 min-h-screen">
         <h1 className="text-3xl font-semibold mb-7 mt-20">Cart</h1>
         <div className="grid xl:grid-cols-3 lg:gap-16 gap-10">
           <CartItems products={products} />
