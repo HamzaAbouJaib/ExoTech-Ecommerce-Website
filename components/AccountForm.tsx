@@ -10,6 +10,7 @@ const AccountForm = ({ preloaded }) => {
     handleSubmit,
     register,
     getValues,
+    setError,
     reset,
     formState: { errors },
   } = useForm({
@@ -27,7 +28,14 @@ const AccountForm = ({ preloaded }) => {
     password,
     confirmPassword,
   }) => {
-    if (password === "" || confirmPassword === "") return;
+    if (password === "" || confirmPassword === "") {
+      setError(
+        "password",
+        { type: "custom", message: "Password is required" },
+        { shouldFocus: true }
+      );
+      return;
+    }
 
     await axios.put("/api/customers", {
       _id: preloaded._id,
