@@ -99,3 +99,7 @@ body {
 .active .bar3 {
   @apply -rotate-45 origin-[5%] w-7;
 }
+
+.account-table tr {
+  @apply max-lg:flex max-lg:flex-col max-lg:mt-2;
+}
