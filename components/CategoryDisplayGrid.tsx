@@ -140,7 +140,10 @@ const CategoryDisplayGrid = ({
             }
           >
             {category?.properties.map((p) => (
-              <div className="bg-gray-100 flex items-center h-max w-max px-6 py-2 gap-5 text-lg rounded-lg">
+              <div
+                key={p.name}
+                className="bg-gray-100 flex items-center h-max w-max px-6 py-2 gap-5 text-lg rounded-lg"
+              >
                 <label className="capitalize">{p.name}:</label>
                 <select
                   className="bg-gray-100"
@@ -151,7 +154,11 @@ const CategoryDisplayGrid = ({
                     All
                   </option>
                   {p.values.map((value: string) => (
-                    <option className="w-40 capitalize" value={value}>
+                    <option
+                      key={value}
+                      className="w-40 capitalize"
+                      value={value}
+                    >
                       {value}
                     </option>
                   ))}
@@ -186,7 +193,7 @@ const CategoryDisplayGrid = ({
       </div>
       <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-10">
         {products?.map((product) => (
-          <ProductCard {...product} />
+          <ProductCard key={product._id} {...product} />
         ))}
       </div>
     </div>

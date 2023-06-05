@@ -19,7 +19,7 @@ export default function products({ products }: { products: ProductType[] }) {
           <h1 className="text-3xl font-semibold mb-7">{`Search result for \"${searchValue}\"`}</h1>
           <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-10">
             {filteredProducts.map((product) => (
-              <ProductCard {...product} />
+              <ProductCard key={product._id} {...product} />
             ))}
           </div>
         </div>

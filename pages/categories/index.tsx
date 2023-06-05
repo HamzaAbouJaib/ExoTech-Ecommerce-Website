@@ -16,6 +16,7 @@ export default function categories({
           if (categoryProduct?.products.length > 0) {
             return (
               <CategoryDisplayGrid
+                key={categoryProduct.category._id}
                 category={categoryProduct?.category}
                 link={"/categories/" + categoryProduct?.category._id}
                 products={categoryProduct?.products}

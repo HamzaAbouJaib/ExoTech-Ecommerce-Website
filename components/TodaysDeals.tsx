@@ -9,7 +9,7 @@ const TodaysDeals = ({ newDeals }: { newDeals: ProductType[] }) => {
       </h1>
       <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-10">
         {newDeals.map((deal) => (
-          <ProductCard {...deal} />
+          <ProductCard key={deal._id} {...deal} />
         ))}
       </div>
     </div>
