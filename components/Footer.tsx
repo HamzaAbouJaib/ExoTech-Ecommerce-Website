@@ -3,7 +3,7 @@ import Link from "next/link";
 const Footer = () => {
   return (
     <div className="bg-slate-900 w-full p-6 text-white mt-24">
-      <div className="w-[80%] m-auto my-6 grid grid-cols-6 items-start gap-64">
+      <div className="w-[80%] m-auto my-6 grid lg:grid-cols-6 items-start gap-6 lg:gap-32 xl:gap-64">
         <Link
           href={"/"}
           className="text-2xl flex items-center gap-1 col-span-2"
@@ -24,7 +24,7 @@ const Footer = () => {
           </svg>
           ExoTech
         </Link>
-        <div className="col-span-4 grid grid-cols-3">
+        <div className="col-span-4 grid sm:grid-cols-3 grid-cols-2 max-sm:gap-7">
           <div className="flex flex-col gap-3">
             <h5 className="font-semibold text-lg">Sitemap</h5>
             <Link href={"/"}>Home</Link>
