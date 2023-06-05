@@ -21,8 +21,8 @@ export default function AccountPage() {
           </button>
         </div>
         <hr className={"w-full border-gray-300"}></hr>
-        <div className="grid grid-cols-4 mt-12">
-          <div className="text-xl font-semibold text-gray-500 flex flex-col gap-2">
+        <div className="grid grid-cols-1 lg:grid-cols-4 mt-12">
+          <div className="text-xl font-semibold text-gray-500 flex flex-col gap-2 max-lg:mb-10 max-lg:pb-10 max-lg:border-b-2">
             <p
               className={`cursor-pointer w-max ${
                 active === "personal" && "text-primary"
