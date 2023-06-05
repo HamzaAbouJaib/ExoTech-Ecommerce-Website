@@ -29,7 +29,14 @@ export default function RegisterPage() {
     password,
     confirmPassword,
   }) => {
-    if (password === "" || confirmPassword === "") return;
+    if (password === "" || confirmPassword === "") {
+      setError(
+        "password",
+        { type: "custom", message: "Password is required" },
+        { shouldFocus: true }
+      );
+      return;
+    }
 
     try {
       await axios.post("/api/customers", {
