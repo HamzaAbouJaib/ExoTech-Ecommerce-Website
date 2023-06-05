@@ -9,16 +9,16 @@ export default function products({ products }: { products: ProductType[] }) {
   const [searchValue, setSearchValue] = useState("");
 
   function searchResults() {
-    const filteredProducs = products.filter((product) =>
+    const filteredProducts = products.filter((product) =>
       product.name.toLowerCase().includes(searchValue.trim().toLowerCase())
     );
 
-    if (filteredProducs.length > 0) {
+    if (filteredProducts.length > 0) {
       return (
         <div className="mt-10">
           <h1 className="text-3xl font-semibold mb-7">{`Search result for \"${searchValue}\"`}</h1>
-          <div className="grid grid-cols-4 gap-10">
-            {filteredProducs.map((product) => (
+          <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-10">
+            {filteredProducts.map((product) => (
               <ProductCard {...product} />
             ))}
           </div>
@@ -27,10 +27,10 @@ export default function products({ products }: { products: ProductType[] }) {
     } else {
       return (
         <div>
-          <h1 className="text-3xl font-semibold mb-7 mt-10">
+          <h1 className="text-3xl font-semibold mb-7 mt-10 break-words">
             Search results for "{searchValue}"
           </h1>
-          <p className="text-lg font-semibold text-gray-600">
+          <p className="text-lg font-semibold text-gray-600 break-words">
             There are no search results for "{searchValue}"
           </p>
         </div>
@@ -46,6 +46,7 @@ export default function products({ products }: { products: ProductType[] }) {
           placeholder="Search..."
           className="w-full border-2 border-gray-400 text-gray-700 text-lg py-2 px-4 rounded-md focus:outline-none focus:border-gray-800"
           value={searchValue}
+          autoFocus={true}
           onChange={(e) => setSearchValue(e.target.value)}
         />
         {searchValue !== "" && searchResults()}
