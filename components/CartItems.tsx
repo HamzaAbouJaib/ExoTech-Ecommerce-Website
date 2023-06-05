@@ -4,11 +4,11 @@ import { useContext } from "react";
 import Link from "next/link";
 
 const CartItems = ({ products }: { products: ProductType[] }) => {
-  const { cartProducts, addProductToCart, removeProductFromCart, clearCart } =
+  const { cartProducts, addProductToCart, removeProductFromCart } =
     useContext(CartContext);
 
   return (
-    <div className="border border-gray-300 shadow-md p-10 rounded-xl col-span-2">
+    <div className="border border-gray-300 shadow-md p-10 rounded-xl xl:col-span-2">
       <h3 className="mb-1 font-semibold text-gray-800">Cart Items</h3>
       {cartProducts?.length > 0 ? (
         <>
@@ -16,14 +16,14 @@ const CartItems = ({ products }: { products: ProductType[] }) => {
             <thead className="border-b-2 border-gray-300 text-gray-700 font-semibold uppercase">
               <tr>
                 <td>Product</td>
-                <td>Quantity</td>
-                <td>Price</td>
+                <td className="max-lg:hidden">Quantity</td>
+                <td className="max-lg:hidden">Price</td>
               </tr>
             </thead>
             <tbody>
               {products.map((product) => (
-                <tr>
-                  <td className="flex gap-2 mt-4">
+                <tr className="max-lg:grid max-lg:grid-cols-2 max-lg:gap-3 max-lg:order-1 max-lg:mb-5">
+                  <td className="flex gap-2 mt-4 max-lg:col-span-2">
                     <div className="w-32 bg-gray-100/50 rounded-lg flex justify-center p-1">
                       <img
                         className="w-[90%] bg-gray-100/50 rounded-lg"
@@ -51,7 +51,7 @@ const CartItems = ({ products }: { products: ProductType[] }) => {
                       </div>
                     </div>
                   </td>
-                  <td>
+                  <td className="max-lg:order-3 max-lg:justify-self-end">
                     <div className="flex justify-between w-max gap-4 border border-gray-400/80 rounded-md px-2 py-1">
                       <button
                         onClick={() => removeProductFromCart(product._id)}
@@ -92,7 +92,7 @@ const CartItems = ({ products }: { products: ProductType[] }) => {
                       </button>
                     </div>
                   </td>
-                  <td>
+                  <td className="lg:text-lg text-xl max-lg:self-center max-lg:font-semibold">
                     CA$
                     {new Intl.NumberFormat("en-US").format(
                       cartProducts.filter((id) => id === product._id).length *
@@ -106,7 +106,13 @@ const CartItems = ({ products }: { products: ProductType[] }) => {
         </>
       ) : (
         <div className="text-xl">
-          Your Cart is Empty. <Link className="text-primary hover:underline underline-offset-2" href={"/products"}>Go Shopping</Link>
+          Your Cart is Empty.{" "}
+          <Link
+            className="text-primary hover:underline underline-offset-2"
+            href={"/products"}
+          >
+            Go Shopping
+          </Link>
         </div>
       )}
     </div>

@@ -44,7 +44,7 @@ const OrderSummary = ({ products }: { products: ProductType[] }) => {
   }
 
   return (
-    <div className="border border-gray-300 shadow-md p-10 rounded-xl h-max">
+    <div className="border border-gray-300 shadow-md p-10 rounded-xl h-max w-full">
       <h3 className="mb-1 font-semibold text-gray-800">Order Summary</h3>
       <div className="flex flex-col delivery gap-1">
         <div className="text-xl font-semibold flex items-center justify-between px-1 border-t-2 border-gray-300 mt-2 pt-2">
