@@ -40,13 +40,16 @@ const ProductImages = ({
   // }
 
   return (
-    <div className="flex items-center gap-10">
-      <div className="h-[500px] flex flex-col items-center justify-center gap-2">
+    <div className="flex flex-col gap-20">
+      <div className="w-[500px] h-[300px] flex items-start justify-center">
+        <img src={activeImage} alt={name + " image"} title={name} className="h-[100%]" />
+      </div>
+      <div className="w-[500px] flex items-center justify-center gap-2">
         <button
           className=""
           onClick={() => {
             if (!slideRef.current) return;
-            slideRef.current.scrollTop -= 64;
+            slideRef.current.scrollLeft -= 64;
           }}
         >
           <svg
@@ -55,17 +58,17 @@ const ProductImages = ({
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="w-7 h-7"
+            className="w-6 h-6"
           >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              d="M4.5 15.75l7.5-7.5 7.5 7.5"
+              d="M15.75 19.5L8.25 12l7.5-7.5"
             />
           </svg>
         </button>
         <div
-          className="flex flex-col items-center gap-4 h-max scrollable"
+          className="flex items-center gap-4 w-[500px] scrollable"
           ref={slideRef}
           // draggable={true}
           // onDragStart={onDragStart}
@@ -75,7 +78,22 @@ const ProductImages = ({
           {images?.map((img) => (
             <div
               key={img}
-              className={`w-[100px] h-[100px] p-2 rounded-lg flex justify-center items-center border-2 border-gray-200 cursor-pointer ${
+              className={`min-w-[100px] h-[100px] p-2 rounded-lg flex justify-center items-center border-2 border-gray-200 cursor-pointer ${
+                img === activeImage && activeStyling
+              }`}
+              onClick={() => setActiveImage(img)}
+            >
+              <img
+                className="pointer-events-none h-max w-max"
+                src={img}
+                alt={name + " image"}
+              />
+            </div>
+          ))}
+          {images?.map((img) => (
+            <div
+              key={img}
+              className={`min-w-[100px] h-[100px] p-2 rounded-lg flex justify-center items-center border-2 border-gray-200 cursor-pointer ${
                 img === activeImage && activeStyling
               }`}
               onClick={() => setActiveImage(img)}
@@ -91,7 +109,7 @@ const ProductImages = ({
         <button
           onClick={() => {
             if (!slideRef.current) return;
-            slideRef.current.scrollTop += 64;
+            slideRef.current.scrollLeft += 64;
           }}
         >
           <svg
@@ -100,19 +118,15 @@ const ProductImages = ({
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="w-7 h-7"
+            className="w-6 h-6"
           >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+              d="M8.25 4.5l7.5 7.5-7.5 7.5"
             />
           </svg>
         </button>
-      </div>
-
-      <div className="w-[500px] h-[500px] p-5 flex items-center">
-        <img src={activeImage} alt={name + " image"} title={name} />
       </div>
     </div>
   );
