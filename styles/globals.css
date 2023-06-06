@@ -20,7 +20,7 @@ body {
 }
 
 .btn-primary-outline {
-  @apply py-2 px-4 rounded-[2rem] border border-primary text-primary font-semibold hover:bg-primary hover:text-white duration-500;
+  @apply py-2 px-4 rounded-md border border-primary text-primary font-semibold hover:bg-primary hover:text-white duration-500;
 }
 
 .btn-secondary {
