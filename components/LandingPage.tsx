@@ -5,8 +5,6 @@ import { useContext } from "react";
 const LandingPage = ({ featured }) => {
   const { addProductToCart } = useContext(CartContext);
 
-  console.log(featured);
-
   return (
     <div className="lg:min-h-[80dvh] h-max max-lg:pb-16 pt-16 bg-slate-900 flex items-center text-white">
       <div className="w-[80%] m-auto grid lg:grid-cols-2 gap-12 lg:gap-32 max-lg:pt-10">

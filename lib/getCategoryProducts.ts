@@ -34,8 +34,7 @@ export async function getCategoryProducts() {
         break;
       }
     }
-    console.log(categoryProducts[0]?.products);
-
+    
     if (add) {
       categoryProducts.push({ category: selectedCategory, products: products });
     }
