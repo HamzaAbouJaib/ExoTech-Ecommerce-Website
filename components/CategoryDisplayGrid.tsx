@@ -192,9 +192,13 @@ const CategoryDisplayGrid = ({
         )}
       </div>
       <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-10">
-        {products?.map((product) => (
-          <ProductCard key={product._id} {...product} />
-        ))}
+        {link
+          ? products
+              ?.slice(0, 3)
+              .map((product) => <ProductCard key={product._id} {...product} />)
+          : products?.map((product) => (
+              <ProductCard key={product._id} {...product} />
+            ))}
       </div>
     </div>
   );
