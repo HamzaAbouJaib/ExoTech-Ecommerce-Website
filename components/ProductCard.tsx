@@ -87,7 +87,7 @@ const ProductCard = ({
 
         <Link
           href={"/products/" + _id}
-          className="h-56 w-full bg-gray-100 flex justify-center rounded-[1rem]"
+          className="h-56 w-full bg-gray-100 flex justify-center rounded-[1rem] p-4"
         >
           <img className="h-full" src={images?.[0]} alt="Project Image" />
         </Link>
