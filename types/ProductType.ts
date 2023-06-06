@@ -8,4 +8,5 @@ export default interface ProductType {
   properties: { [key: string]: string };
   images: string[];
   discount: string;
+  featured: boolean;
 }
