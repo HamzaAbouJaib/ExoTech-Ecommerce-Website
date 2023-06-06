@@ -48,6 +48,7 @@ export default async function handler(
           currency: "CAD",
           product_data: {
             name: productInfo.name,
+            images: [productInfo.images[0]],
           },
           unit_amount: Math.round(Number.parseFloat(productInfo.price) * 100),
         },
@@ -75,24 +76,13 @@ export default async function handler(
     },
     shipping_options: [
       {
-        shipping_rate_data: {
-          type: "fixed_amount",
-          fixed_amount: {
-            amount: 5000,
-            currency: "cad",
-          },
-          display_name: "Standard shipping",
-          delivery_estimate: {
-            minimum: {
-              unit: "business_day",
-              value: 5,
-            },
-            maximum: {
-              unit: "business_day",
-              value: 7,
-            },
-          },
-        },
+        shipping_rate: "shr_1NG8ypFQsKQilnob8xPO6OsJ",
+      },
+      {
+        shipping_rate: "shr_1NG91WFQsKQilnobd3S2nodM",
+      },
+      {
+        shipping_rate: "shr_1NG92EFQsKQilnobtDm34fPV",
       },
     ],
     line_items,
