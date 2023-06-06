@@ -11,6 +11,7 @@ const ProductSchema = new Schema(
     images: [{ type: String }],
     discount: Number,
     madeByGuest: { type: Boolean, required: true },
+    featured: { type: Boolean, default: false },
   },
   { timestamps: true }
 );
