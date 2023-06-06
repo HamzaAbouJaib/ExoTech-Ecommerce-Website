@@ -1,9 +1,40 @@
 import { CartContext } from "@/store/CartContext";
 import ProductType from "@/types/ProductType";
+import axios from "axios";
 import { useContext } from "react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 
 const ProductInfo = ({ product }: { product: ProductType }) => {
   const { addProductToCart } = useContext(CartContext);
+  const { data: session } = useSession();
+  const router = useRouter();
+
+  async function proceedToPayment() {
+    if (!session) {
+      router.push("/login");
+      return;
+    }
+
+    let customer;
+
+    await axios
+      .get("/api/customers?email=" + session.user.email)
+      .then((response) => {
+        customer = response.data;
+      });
+
+    const response = await axios.post("/api/checkout", {
+      name: customer.name,
+      email: customer.email,
+      mobile: customer.mobile,
+      cartProducts: [product._id],
+    });
+
+    if (response.data.url) {
+      window.location = response.data.url;
+    }
+  }
 
   return (
     <div className="leading-none mt-4">
@@ -78,12 +109,18 @@ const ProductInfo = ({ product }: { product: ProductType }) => {
           </p>
         ))}
       </div>
-      <div>
+      <div className="flex gap-2 mt-10">
         <button
           className="btn-primary-outline text-xl"
           onClick={() => addProductToCart(product?._id)}
         >
           Add to Cart
+        </button>
+        <button
+          className="btn-primary font-semibold text-xl"
+          onClick={proceedToPayment}
+        >
+          Buy Now
         </button>
       </div>
     </div>
