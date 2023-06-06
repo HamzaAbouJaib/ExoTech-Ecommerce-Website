@@ -16,16 +16,20 @@ const ProductInfo = ({ product }: { product: ProductType }) => {
           <div className="flex gap-2 items-center">
             <p>
               {"CA$" +
-                new Intl.NumberFormat("en-US").format(
+                new Intl.NumberFormat("en-US", {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                }).format(
                   Number.parseFloat(product?.price) *
                     (1 - Number.parseFloat(product?.discount) / 100)
                 )}
             </p>
             <s className="text-red-600 text-lg font-normal">
               CA$
-              {new Intl.NumberFormat("en-US").format(
-                Number.parseFloat(product?.price)
-              )}
+              {new Intl.NumberFormat("en-US", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              }).format(Number.parseFloat(product?.price))}
             </s>
           </div>
         ) : (
