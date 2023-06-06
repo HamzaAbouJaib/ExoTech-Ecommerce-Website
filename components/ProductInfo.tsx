@@ -102,7 +102,7 @@ const ProductInfo = ({ product }: { product: ProductType }) => {
         {Object.keys(product?.properties).map((propertyKey: string) => (
           <p
             key={propertyKey}
-            className="btn-primary py-1 px-3 rounded-xl flex items-center gap-1"
+            className="bg-gray-200 rounded-md py-2 px-4 flex items-center gap-1"
           >
             <span className="font-semibold capitalize">{propertyKey}:</span>
             {product?.properties[propertyKey]}
