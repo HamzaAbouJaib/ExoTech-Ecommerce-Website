@@ -9,13 +9,15 @@ import ProductType from "@/types/ProductType";
 export default function Home({
   newDeals,
   recentProducts,
+  featured,
 }: {
   newDeals: ProductType[];
   recentProducts: ProductType[];
+  featured: ProductType;
 }) {
   return (
     <Layout>
-      <LandingPage />
+      <LandingPage featured={featured} />
       <div className="w-[80%] m-auto mb-10 min-h-screen">
         <TodaysDeals newDeals={newDeals} />
         <ProductsGrid title={"New Arrivals"} products={recentProducts} />
@@ -38,10 +40,18 @@ export async function getServerSideProps() {
       limit: 4,
     }
   );
+
+  const products = await Product.find({ madeByGuest: { $eq: false } }, null, {
+    sort: { _id: -1 },
+  });
+
+  const featured = products.find((product) => product.featured);
+
   return {
     props: {
       newDeals: JSON.parse(JSON.stringify(newDeals)),
       recentProducts: JSON.parse(JSON.stringify(recentProducts)),
+      featured: JSON.parse(JSON.stringify(featured)),
     },
   };
 }
