@@ -16,7 +16,7 @@ body {
 }
 
 .btn-primary {
-  @apply btn bg-primary text-white;
+  @apply btn bg-primary text-white hover:bg-primary/80 duration-500;
 }
 
 .btn-primary-outline {
@@ -24,7 +24,7 @@ body {
 }
 
 .btn-secondary {
-  @apply btn bg-slate-600 text-white;
+  @apply btn bg-slate-600 text-white hover:bg-slate-600/80 duration-500;
 }
 
 .scrollable {
