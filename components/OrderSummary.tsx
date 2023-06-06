@@ -55,17 +55,8 @@ const OrderSummary = ({ products }: { products: ProductType[] }) => {
             maximumFractionDigits: 2,
           }).format(total)}
         </div>
-        <div className="text-xl font-semibold flex items-center justify-between px-1 border-t border-gray-300 mt-2 pt-2">
-          <p className="text-gray-500">Shipping</p>
-          CA$50.00
-        </div>
-        <div className="text-xl font-semibold flex items-center justify-between px-1 border-t border-gray-300 mt-2 pt-2">
-          <p className="text-gray-500">Total</p>
-          CA$
-          {new Intl.NumberFormat("en-US", {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2,
-          }).format(total + 50)}
+        <div className="text-sm font-semibold flex items-center justify-between px-1 border-t border-gray-300 mt-2 pt-2">
+          <p className="text-gray-500">Shipping options available on checkout page</p>
         </div>
         <button className="btn-primary mt-5 w-full" onClick={proceedToPayment}>
           Proceed to Checkout
