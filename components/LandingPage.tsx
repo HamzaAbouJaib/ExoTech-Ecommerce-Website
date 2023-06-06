@@ -1,24 +1,37 @@
-const LandingPage = () => {
+import { CartContext } from "@/store/CartContext";
+import Link from "next/link";
+import { useContext } from "react";
+
+const LandingPage = ({ featured }) => {
+  const { addProductToCart } = useContext(CartContext);
+
+  console.log(featured);
+
   return (
     <div className="lg:min-h-[80dvh] h-max max-lg:pb-16 pt-16 bg-slate-900 flex items-center text-white">
-      <div className="w-[80%] m-auto grid lg:grid-cols-2 lg:gap-32 max-lg:pt-10">
+      <div className="w-[80%] m-auto grid lg:grid-cols-2 gap-12 lg:gap-32 max-lg:pt-10">
         <div className="flex flex-col gap-8 justify-center max-lg:order-2">
-          <h1 className="lg:text-5xl text-3xl font-semibold">Samsung Galaxy S23 Ultra</h1>
-          <p className="text-lg text-slate-200">
-            Meet the new Galaxy S23 Ultra, designed for better sustainability
-            and equipped with a built-in S Pen, Nightography camera and powerful
-            chip for epic gaming
-          </p>
+          <h1 className="lg:text-5xl text-3xl font-semibold">
+            {featured.name}
+          </h1>
+          <p className="text-lg text-slate-200">{featured.description}</p>
           <div className="flex gap-5 text-xl mt-5">
-            <button className="btn-secondary">Read More</button>
-            <button className="btn-primary">Add to Cart</button>
+            <Link href={"/products/" + featured._id} className="btn-secondary">
+              Read More
+            </Link>
+            <button
+              className="btn-primary"
+              onClick={() => addProductToCart(featured._id)}
+            >
+              Add to Cart
+            </button>
           </div>
         </div>
-        <div className="flex lg:justify-end justify-center items-center max-lg:order-1">
+        <div className="flex justify-center items-center max-lg:order-1 max-lg:mt-5">
           <img
-            src="https://static.vecteezy.com/system/resources/previews/022/722/945/original/samsung-galaxy-s23-ultra-transparent-image-free-png.png"
-            alt="Samsung Galaxy S23 Ultra"
-            className="lg:w-[90%] w-[400px]"
+            src={featured?.images?.[0]}
+            alt={featured.name}
+            className="h-max-[450px]"
           />
         </div>
       </div>
