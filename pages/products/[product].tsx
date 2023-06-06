@@ -15,6 +15,16 @@ export default function ProductPage({
   product: ProductType;
   similarProducts: ProductType[];
 }) {
+  function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
+    return array;
+  }
+
   return (
     <Layout>
       <div className="w-[80%] m-auto mb-10 lg:pt-20 pt-1 min-h-screen">
@@ -22,7 +32,10 @@ export default function ProductPage({
           <ProductImages images={product?.images} name={product?.name} />
           <ProductInfo product={product} />
         </div>
-        <ProductsGrid title={"Similar Products"} products={similarProducts} />
+        <ProductsGrid
+          title={"Similar Products"}
+          products={shuffleArray(similarProducts).slice(0, 3)}
+        />
       </div>
     </Layout>
   );
