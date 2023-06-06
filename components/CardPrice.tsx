@@ -13,16 +13,27 @@ const CardPrice = ({
         <>
           <p>
             <span className="text-red-600 font-normal">-{discount}%</span> CA$
-            {new Intl.NumberFormat("en-US").format(
-              numberPrice * (1 - numberDiscount / 100)
-            )}
+            {new Intl.NumberFormat("en-US", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            }).format(numberPrice * (1 - numberDiscount / 100))}
           </p>
           <s className="text-slate-600">
-            CA${new Intl.NumberFormat("en-US").format(numberPrice)}
+            CA$
+            {new Intl.NumberFormat("en-US", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            }).format(numberPrice)}
           </s>
         </>
       ) : (
-        <p>CA${new Intl.NumberFormat("en-US").format(numberPrice)}</p>
+        <p>
+          CA$
+          {new Intl.NumberFormat("en-US", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          }).format(numberPrice)}
+        </p>
       )}
     </>
   );
