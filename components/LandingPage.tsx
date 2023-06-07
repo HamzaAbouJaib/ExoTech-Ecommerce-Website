@@ -1,7 +1,6 @@
 import { CartContext } from "@/store/CartContext";
 import Link from "next/link";
 import { useContext } from "react";
-import Image from "next/image";
 
 const LandingPage = ({ featured }) => {
   const { addProductToCart } = useContext(CartContext);
