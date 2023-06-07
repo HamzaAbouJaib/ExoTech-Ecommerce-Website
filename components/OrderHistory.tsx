@@ -44,7 +44,7 @@ const OrderHistory = () => {
           </thead>
           <tbody>
             {orders.map((order: any) => (
-              <tr>
+              <tr key={order._id}>
                 <td>
                   <p>{new Date(order.createdAt).toLocaleDateString()}</p>
                 </td>
