@@ -1,27 +1,59 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 
 const AccountForm = ({ preloaded }) => {
   const [savedChanges, setSavedChanges] = useState(false);
+  const { data: session } = useSession();
+  const [openModal, setOpenModal] = useState(false);
+  const [userPassword, setUserPassword] = useState<string>();
 
   const {
     handleSubmit,
     register,
     getValues,
     setError,
+    setValue,
     reset,
     formState: { errors },
-  } = useForm({
-    defaultValues: {
-      name: preloaded.name,
-      email: preloaded.email,
-      mobile: preloaded.mobile,
-      password: "",
-      confirmPassword: "",
-    },
-  });
+  } = useForm();
+
+  useEffect(() => {
+    setValue("name", session.user.name);
+    setValue("email", session.user.email);
+    setValue("mobile", preloaded.mobile);
+  }, [session.user, setValue]);
+
+  async function confirmChanges() {
+    const name = getValues("name");
+    const email = getValues("email");
+    const mobile = getValues("mobile");
+    try {
+      console.log(email, session.user.email);
+      console.log(email === session.user.email);
+
+      await axios.put("/api/customers", {
+        _id: preloaded._id,
+        name,
+        email,
+        mobile,
+        password: userPassword,
+      });
+      await signIn("credentials", {
+        redirect: false,
+        email,
+        password: userPassword,
+      });
+
+      setValue("name", name);
+      setValue("email", email);
+      setValue("mobile", mobile);
+      setSavedChanges(true);
+      setOpenModal(false);
+      setUserPassword("");
+    } catch (err) {}
+  }
 
   const submitHandler = async ({
     name,
@@ -31,43 +63,82 @@ const AccountForm = ({ preloaded }) => {
     confirmPassword,
   }) => {
     if (password === "" || confirmPassword === "") {
-      setError(
-        "password",
-        { type: "custom", message: "Password is required" },
-        { shouldFocus: true }
-      );
+      setOpenModal(true);
       return;
     }
 
-    await axios.put("/api/customers", {
-      _id: preloaded._id,
-      name,
-      email,
-      mobile,
-      password,
-    });
-    setSavedChanges(true);
-    password = "";
-    confirmPassword = "";
-    reset(
-      {
+    try {
+      await axios.put("/api/customers", {
+        _id: preloaded._id,
         name,
         email,
         mobile,
         password,
-        confirmPassword,
-      },
-      { keepDefaultValues: true }
-    );
-    await signIn("credentials", {
-      redirect: false,
-      email,
-      password,
-    });
+      });
+      setSavedChanges(true);
+      console.log(password);
+      await signIn("credentials", {
+        redirect: false,
+        email,
+        password,
+      });
+      password = "";
+      confirmPassword = "";
+      reset(
+        {
+          name,
+          email,
+          mobile,
+          password,
+          confirmPassword,
+        },
+        { keepDefaultValues: true }
+      );
+    } catch (error) {
+      setError(
+        "email",
+        { type: "custom", message: "Email already in use" },
+        { shouldFocus: true }
+      );
+    }
   };
 
   return (
     <form onSubmit={handleSubmit(submitHandler)}>
+      {openModal && (
+        <div className="absolute top-0 left-0 h-screen w-screen bg-gray-500/50 flex justify-center items-center">
+          <div className="bg-white p-5 rounded-md w-[500px]">
+            <div className="flex justify-between">
+              <h3 className="font-semibold text-xl mb-5">
+                Enter your password to confirm changes
+              </h3>
+            </div>
+            <input
+              className="w-full text-lg border-2 border-gray-200 py-1 px-3 rounded-md focus:outline-none focus:border-gray-500"
+              placeholder="Password"
+              type="password"
+              value={userPassword}
+              onChange={(e) => setUserPassword(e.target.value)}
+            />
+            <div className="flex gap-3 mt-5">
+              <button
+                type="button"
+                className="btn-primary"
+                onClick={confirmChanges}
+              >
+                Update
+              </button>
+              <button
+                type="button"
+                className="btn-primary"
+                onClick={() => setOpenModal(false)}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       <p>
         {savedChanges &&
           setInterval(() => {
@@ -116,7 +187,9 @@ const AccountForm = ({ preloaded }) => {
                 })}
               />
               {errors.email && (
-                <div className="text-red-600">{errors.email.message.toString()}</div>
+                <div className="text-red-600">
+                  {errors.email.message.toString()}
+                </div>
               )}
             </td>
           </tr>
@@ -135,7 +208,9 @@ const AccountForm = ({ preloaded }) => {
                 })}
               />
               {errors.mobile && (
-                <div className="text-red-500">{errors.mobile.message.toString()}</div>
+                <div className="text-red-500">
+                  {errors.mobile.message.toString()}
+                </div>
               )}
             </td>
           </tr>
@@ -156,7 +231,9 @@ const AccountForm = ({ preloaded }) => {
                 })}
               />
               {errors.password && (
-                <div className="text-red-600 ">{errors.password.message.toString()}</div>
+                <div className="text-red-600 ">
+                  {errors.password.message.toString()}
+                </div>
               )}
             </td>
           </tr>
