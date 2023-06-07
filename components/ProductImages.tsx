@@ -42,9 +42,14 @@ const ProductImages = ({
   return (
     <div className="flex flex-col lg:gap-20 gap-10 max-lg:order-2 items-center">
       <div className="h-[300px] flex items-center justify-center">
-        <img src={activeImage} alt={name + " image"} title={name} className="h-full" />
+        <img
+          src={activeImage}
+          alt={name + " image"}
+          title={name}
+          className="h-full"
+        />
       </div>
-      <div className="lg:w-[500px] w-[350px] flex items-center justify-center gap-2">
+      <div className="lg:w-[500px] sm:w-[350px] w-full flex items-center justify-center gap-2">
         <button
           className=""
           onClick={() => {
