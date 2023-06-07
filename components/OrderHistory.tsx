@@ -31,7 +31,7 @@ const OrderHistory = () => {
   }, [session]);
 
   return (
-    <div className="overflow-scroll">
+    <div className="max-2xl:overflow-x-scroll">
       {orders?.length > 0 ? (
         <table className="order-table">
           <thead>
