@@ -5,7 +5,7 @@ import { Product } from "@/models/Product";
 import ProductType from "@/types/ProductType";
 import { useState } from "react";
 
-export default function products({ products }: { products: ProductType[] }) {
+export default function SearchPage({ products }: { products: ProductType[] }) {
   const [searchValue, setSearchValue] = useState("");
 
   function searchResults() {
