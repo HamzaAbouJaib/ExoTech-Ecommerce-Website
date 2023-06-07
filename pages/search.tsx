@@ -28,10 +28,10 @@ export default function SearchPage({ products }: { products: ProductType[] }) {
       return (
         <div>
           <h1 className="text-3xl font-semibold mb-7 mt-10 break-words">
-            Search results for "{searchValue}"
+            Search results for &quot;{searchValue}&quot;
           </h1>
           <p className="text-lg font-semibold text-gray-600 break-words">
-            There are no search results for "{searchValue}"
+            There are no search results for &quot;{searchValue}&quot;
           </p>
         </div>
       );
