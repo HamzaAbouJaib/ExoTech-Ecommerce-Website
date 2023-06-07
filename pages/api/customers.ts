@@ -38,15 +38,27 @@ export default async function handler(
         { $push: { favourites: favourite } }
       );
     } else {
-      CustomerDoc = await Customer.updateOne(
-        { _id },
-        {
-          name,
-          email,
-          mobile,
-          password: bcrypt.hashSync(password),
-        }
-      );
+
+      if (password !== undefined) {
+        CustomerDoc = await Customer.updateOne(
+          { _id },
+          {
+            name,
+            email,
+            mobile,
+            password: bcrypt.hashSync(password),
+          }
+        );
+      } else {
+        CustomerDoc = await Customer.updateOne(
+          { _id },
+          {
+            name,
+            email,
+            mobile,
+          }
+        );
+      }
     }
     res.json(CustomerDoc);
   }
