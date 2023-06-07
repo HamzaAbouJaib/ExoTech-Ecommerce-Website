@@ -27,7 +27,7 @@ const LandingPage = ({ featured }) => {
           </div>
         </div>
         <div className="flex justify-center items-center max-lg:order-1 max-lg:mt-5">
-          <Image
+          <img
             src={featured?.images?.[0]}
             alt={featured.name}
             className="h-max-[450px]"
