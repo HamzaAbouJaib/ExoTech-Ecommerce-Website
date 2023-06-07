@@ -2,7 +2,6 @@ import { CartContext } from "@/store/CartContext";
 import ProductType from "@/types/ProductType";
 import { useContext } from "react";
 import Link from "next/link";
-import Image from "next/image";
 
 const CartItems = ({ products }: { products: ProductType[] }) => {
   const { cartProducts, addProductToCart, removeProductFromCart } =
@@ -29,7 +28,7 @@ const CartItems = ({ products }: { products: ProductType[] }) => {
                 >
                   <td className="flex gap-2 mt-4 max-lg:col-span-2">
                     <div className="w-32 bg-gray-100/50 rounded-lg flex justify-center p-1">
-                      <Image
+                      <img
                         className="w-[90%] bg-gray-100/50 rounded-lg"
                         src={product.images[0]}
                         alt={product.name}
