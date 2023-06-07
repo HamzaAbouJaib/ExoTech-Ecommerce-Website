@@ -18,6 +18,8 @@ const AccountForm = ({ preloaded }) => {
       name: preloaded.name,
       email: preloaded.email,
       mobile: preloaded.mobile,
+      password: "",
+      confirmPassword: "",
     },
   });
 
@@ -91,7 +93,9 @@ const AccountForm = ({ preloaded }) => {
                 })}
               />
               {errors.name && (
-                <div className="text-red-600">{errors.name.message}</div>
+                <div className="text-red-600">
+                  {errors.name.message.toString()}
+                </div>
               )}
             </td>
           </tr>
@@ -112,7 +116,7 @@ const AccountForm = ({ preloaded }) => {
                 })}
               />
               {errors.email && (
-                <div className="text-red-600">{errors.email.message}</div>
+                <div className="text-red-600">{errors.email.message.toString()}</div>
               )}
             </td>
           </tr>
@@ -131,7 +135,7 @@ const AccountForm = ({ preloaded }) => {
                 })}
               />
               {errors.mobile && (
-                <div className="text-red-500">{errors.mobile.message}</div>
+                <div className="text-red-500">{errors.mobile.message.toString()}</div>
               )}
             </td>
           </tr>
@@ -152,7 +156,7 @@ const AccountForm = ({ preloaded }) => {
                 })}
               />
               {errors.password && (
-                <div className="text-red-600 ">{errors.password.message}</div>
+                <div className="text-red-600 ">{errors.password.message.toString()}</div>
               )}
             </td>
           </tr>
@@ -171,7 +175,7 @@ const AccountForm = ({ preloaded }) => {
               />
               {errors.confirmPassword && (
                 <div className="text-red-600 ">
-                  {errors.confirmPassword.message}
+                  {errors.confirmPassword.message.toString()}
                 </div>
               )}
               {errors.confirmPassword &&
