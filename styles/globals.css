@@ -103,5 +103,3 @@ body {
 .account-table tr {
   @apply max-lg:flex max-lg:flex-col max-lg:mt-2;
 }
-
-
