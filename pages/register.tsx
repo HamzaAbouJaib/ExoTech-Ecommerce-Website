@@ -81,7 +81,7 @@ export default function RegisterPage() {
               })}
             />
             {errors.name && (
-              <div className="text-red-600">{errors.name.message}</div>
+              <div className="text-red-600">{errors.name.message.toString()}</div>
             )}
             <label className="font-semibold mt-2 text-lg">Email</label>
             <input
@@ -98,7 +98,7 @@ export default function RegisterPage() {
               })}
             />
             {errors.email && (
-              <div className="text-red-600">{errors.email.message}</div>
+              <div className="text-red-600">{errors.email.message.toString()}</div>
             )}
             <label className="font-semibold mt-2 text-lg">
               Phone Number{" "}
@@ -116,7 +116,7 @@ export default function RegisterPage() {
               })}
             />
             {errors.mobile && (
-              <div className="text-red-500">{errors.mobile.message}</div>
+              <div className="text-red-500">{errors.mobile.message.toString()}</div>
             )}
             <label className="font-semibold mt-2 text-lg">Password</label>
             <input
@@ -132,7 +132,7 @@ export default function RegisterPage() {
               })}
             />
             {errors.password && (
-              <div className="text-red-600 ">{errors.password.message}</div>
+              <div className="text-red-600 ">{errors.password.message.toString()}</div>
             )}
             <label className="font-semibold mt-2 text-lg">
               Confirm Password
@@ -148,7 +148,7 @@ export default function RegisterPage() {
             />
             {errors.confirmPassword && (
               <div className="text-red-600 ">
-                {errors.confirmPassword.message}
+                {errors.confirmPassword.message.toString()}
               </div>
             )}
             {errors.confirmPassword &&
