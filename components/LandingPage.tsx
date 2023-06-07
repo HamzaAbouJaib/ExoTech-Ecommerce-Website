@@ -1,6 +1,7 @@
 import { CartContext } from "@/store/CartContext";
 import Link from "next/link";
 import { useContext } from "react";
+import Image from "next/image";
 
 const LandingPage = ({ featured }) => {
   const { addProductToCart } = useContext(CartContext);
@@ -26,7 +27,7 @@ const LandingPage = ({ featured }) => {
           </div>
         </div>
         <div className="flex justify-center items-center max-lg:order-1 max-lg:mt-5">
-          <img
+          <Image
             src={featured?.images?.[0]}
             alt={featured.name}
             className="h-max-[450px]"
