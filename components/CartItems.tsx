@@ -2,6 +2,7 @@ import { CartContext } from "@/store/CartContext";
 import ProductType from "@/types/ProductType";
 import { useContext } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 const CartItems = ({ products }: { products: ProductType[] }) => {
   const { cartProducts, addProductToCart, removeProductFromCart } =
@@ -22,12 +23,16 @@ const CartItems = ({ products }: { products: ProductType[] }) => {
             </thead>
             <tbody>
               {products.map((product) => (
-                <tr className="max-lg:grid max-lg:grid-cols-2 max-lg:gap-3 max-lg:order-1 max-lg:mb-5">
+                <tr
+                  key={product._id}
+                  className="max-lg:grid max-lg:grid-cols-2 max-lg:gap-3 max-lg:order-1 max-lg:mb-5"
+                >
                   <td className="flex gap-2 mt-4 max-lg:col-span-2">
                     <div className="w-32 bg-gray-100/50 rounded-lg flex justify-center p-1">
-                      <img
+                      <Image
                         className="w-[90%] bg-gray-100/50 rounded-lg"
                         src={product.images[0]}
+                        alt={product.name}
                       />
                     </div>
 
@@ -40,7 +45,10 @@ const CartItems = ({ products }: { products: ProductType[] }) => {
                       </div>
                       <div className="flex flex-wrap mt-2">
                         {Object.keys(product.properties).map((key, index) => (
-                          <p className="text-gray-400 font-semibold capitalize text-sm">
+                          <p
+                            key={key}
+                            className="text-gray-400 font-semibold capitalize text-sm"
+                          >
                             {product.properties[key]}
                             <span className="mx-1 text-gray-400/50">
                               {Object.keys(product.properties).length - 1 !==
