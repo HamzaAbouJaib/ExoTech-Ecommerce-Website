@@ -25,10 +25,10 @@ export default function LoginPage() {
         password,
       });
       if (result.error) {
-        setError(result.error);
+        setError("CredentialsSignin");
       }
     } catch (err) {
-      setError(err.response.data.message);
+      setError("CredentialsSignin");
     }
   }
 
