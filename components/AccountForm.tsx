@@ -25,6 +25,14 @@ const AccountForm = ({ preloaded }) => {
     setValue("mobile", preloaded.mobile);
   }, [session.user, setValue]);
 
+  useEffect(() => {
+    if (openModal) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [openModal]);
+
   async function confirmChanges() {
     const name = getValues("name");
     const email = getValues("email");
@@ -106,8 +114,8 @@ const AccountForm = ({ preloaded }) => {
   return (
     <form onSubmit={handleSubmit(submitHandler)}>
       {openModal && (
-        <div className="absolute top-0 left-0 h-screen w-screen bg-gray-500/50 flex justify-center items-center">
-          <div className="bg-white p-5 rounded-md w-[500px]">
+        <div className="fixed top-0 left-0 h-screen w-screen flex justify-center items-center m-auto bg-gray-500/50">
+          <div className="bg-white p-5 rounded-md md:w-[500px] w-[90%]">
             <div className="flex justify-between">
               <h3 className="font-semibold text-xl mb-5">
                 Enter your password to confirm changes
