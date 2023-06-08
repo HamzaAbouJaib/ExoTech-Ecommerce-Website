@@ -91,14 +91,14 @@ const ProductCard = ({
         >
           <img className="h-full" src={images?.[0]} alt="Project Image" />
         </Link>
-        <div className="grid grid-cols-2">
+        <div>
           <div>
             <Link href={"/products/" + _id} className="text-2xl font-bold">
               {name}
             </Link>
             <p>{brand}</p>
           </div>
-          <div className="flex flex-col items-end text-xl font-bold">
+          <div className="flex flex-col items-start text-xl font-bold mt-2">
             <CardPrice price={price} discount={discount} />
           </div>
         </div>
