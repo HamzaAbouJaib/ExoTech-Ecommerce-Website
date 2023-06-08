@@ -10,8 +10,8 @@ const CardPrice = ({
   return (
     <>
       {numberDiscount > 0 ? (
-        <div className="flex flex-col">
-          <div className="flex items-center gap-1">
+        <div className="flex flex-col leading-none">
+          <div className="flex items-center gap-1 mb-1">
             <p>
               CA$
               {new Intl.NumberFormat("en-US", {
