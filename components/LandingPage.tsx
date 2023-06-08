@@ -13,7 +13,7 @@ const LandingPage = ({ featured }) => {
             {featured.name}
           </h1>
           <p className="text-lg text-slate-200">{featured.description}</p>
-          <div className="flex gap-5 text-xl mt-5">
+          <div className="flex gap-5 text-lg sm:text-xl sm:mt-5">
             <Link href={"/products/" + featured._id} className="btn-secondary">
               Read More
             </Link>
