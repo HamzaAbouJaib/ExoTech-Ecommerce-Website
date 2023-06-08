@@ -10,15 +10,18 @@ const CardPrice = ({
   return (
     <>
       {numberDiscount > 0 ? (
-        <div className="flex flex-col flex-wrap items-end">
-          <p className="flex flex-wrap items-end">
-            <span className="text-red-600 font-normal">-{discount}%</span> CA$
-            {new Intl.NumberFormat("en-US", {
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            }).format(numberPrice * (1 - numberDiscount / 100))}
-          </p>
-          <s className="text-slate-600">
+        <div className="flex flex-col">
+          <div className="flex items-center gap-1">
+            <p>
+              CA$
+              {new Intl.NumberFormat("en-US", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              }).format(numberPrice * (1 - numberDiscount / 100))}
+            </p>
+            <span className="text-red-600 font-normal">-{discount}%</span>
+          </div>
+          <s className="text-slate-500">
             CA$
             {new Intl.NumberFormat("en-US", {
               minimumFractionDigits: 2,
