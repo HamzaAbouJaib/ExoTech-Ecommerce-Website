@@ -12,7 +12,7 @@ const CartItems = ({ products }: { products: ProductType[] }) => {
       <h3 className="mb-1 font-semibold text-gray-800">Cart Items</h3>
       {cartProducts?.length > 0 ? (
         <>
-          <table className="w-full ">
+          <table className="w-full">
             <thead className="border-b-2 border-gray-300 text-gray-700 font-semibold uppercase">
               <tr>
                 <td>Product</td>
@@ -24,10 +24,10 @@ const CartItems = ({ products }: { products: ProductType[] }) => {
               {products.map((product) => (
                 <tr
                   key={product._id}
-                  className="max-lg:grid max-lg:grid-cols-2 max-lg:gap-3 max-lg:order-1 max-lg:mb-5"
+                  className="max-lg:grid max-lg:grid-cols-2 max-sm:gap-0 max-lg:gap-3 max-lg:order-1 max-lg:mb-5"
                 >
-                  <td className="flex gap-2 mt-4 max-lg:col-span-2">
-                    <div className="w-32 bg-gray-100/50 rounded-lg flex justify-center p-1">
+                  <td className="sm:flex gap-2 mt-4 max-lg:col-span-2">
+                    <div className="lg:w-32 w-24 bg-gray-100/50 rounded-lg flex justify-center p-1">
                       <img
                         className="w-[90%] bg-gray-100/50 rounded-lg"
                         src={product.images[0]}
@@ -42,7 +42,7 @@ const CartItems = ({ products }: { products: ProductType[] }) => {
                         </h5>
                         <p>{product.brand}</p>
                       </div>
-                      <div className="flex flex-wrap mt-2">
+                      <div className="flex flex-wrap sm:mt-2">
                         {Object.keys(product.properties).map((key, index) => (
                           <p
                             key={key}
@@ -58,7 +58,7 @@ const CartItems = ({ products }: { products: ProductType[] }) => {
                       </div>
                     </div>
                   </td>
-                  <td className="max-lg:order-3 max-lg:justify-self-end">
+                  <td className="max-lg:order-3 max-lg:justify-self-end max-sm:justify-self-start max-sm:col-span-2 max-sm:mt-2">
                     <div className="flex justify-between w-max gap-4 border border-gray-400/80 rounded-md px-2 py-1">
                       <button
                         onClick={() => removeProductFromCart(product._id)}
