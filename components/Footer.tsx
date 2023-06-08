@@ -2,8 +2,8 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <div className="bg-slate-900 w-full p-6 text-white mt-24">
-      <div className="w-[80%] m-auto my-6 grid lg:grid-cols-6 items-start gap-6 lg:gap-32 xl:gap-64">
+    <div className="bg-slate-900 w-screen p-6 text-white mt-24">
+      <div className="w-[80%] m-auto my-6 grid lg:grid-cols-6 items-start gap-6 lg:gap-32 2xl:gap-64">
         <Link
           href={"/"}
           className="text-2xl flex items-center gap-1 col-span-2"
