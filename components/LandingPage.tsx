@@ -29,7 +29,7 @@ const LandingPage = ({ featured }) => {
           <img
             src={featured?.images?.[0]}
             alt={featured.name}
-            className="h-max-[450px]"
+            className="lg:max-h-[500px] max-h-[400px]"
           />
         </div>
       </div>
