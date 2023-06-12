@@ -30,6 +30,20 @@ const OrderHistory = () => {
     });
   }, [session]);
 
+  function getTotal(items) {
+    let total = 0;
+
+    for (const item of items) {
+      total +=
+        (item.price_data.unit_amount / 100) * Number.parseInt(item.quantity);
+    }
+
+    return new Intl.NumberFormat("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(total);
+  }
+
   return (
     <div className="max-2xl:overflow-x-scroll">
       {orders?.length > 0 ? (
@@ -48,7 +62,7 @@ const OrderHistory = () => {
                 <td>
                   <p>{new Date(order.createdAt).toLocaleDateString()}</p>
                 </td>
-                <td>
+                <td className="text-base">
                   {order.line_items.map((line_item: any) => (
                     <>
                       {line_item.price_data.product_data.name}{" "}
@@ -59,15 +73,7 @@ const OrderHistory = () => {
                     </>
                   ))}
                 </td>
-                <td>
-                  {order.line_items?.map((line_item: any) => (
-                    <>
-                      CA$
-                      {(line_item.price_data.unit_amount / 100) *
-                        Number.parseInt(line_item.quantity)}
-                    </>
-                  ))}
-                </td>
+                <td>CA${getTotal(order.line_items)}</td>
                 <td>{order.status}</td>
               </tr>
             ))}
