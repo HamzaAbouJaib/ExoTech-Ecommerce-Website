@@ -7,7 +7,7 @@ This project is a mobile-responsive tech e-commerce website built using React.js
 ## Deployment
 The website is being deployed on vercel at "link to site"  
 Guest Login and Credit Card for testing purposes:
-- Email: guest@exotech.test
+- Email: guest@exotech.com
 - Password: test1234
 - Credit Card Number: 4242 4242 4242 4242
 - Credit Card Expiry Date: Any future date
