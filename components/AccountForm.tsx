@@ -38,9 +38,6 @@ const AccountForm = ({ preloaded }) => {
     const email = getValues("email");
     const mobile = getValues("mobile");
     try {
-      console.log(email, session.user.email);
-      console.log(email === session.user.email);
-
       await axios.put("/api/customers", {
         _id: preloaded._id,
         name,
@@ -156,6 +153,11 @@ const AccountForm = ({ preloaded }) => {
               Your changes have been saved!
             </p>
           )}
+        {session?.user?.email === "guest@exotech.com" && (
+          <p className="text-md text-red-600">
+            You cannot change the information of the demo account
+          </p>
+        )}
       </p>
       <table className="border-separate border-spacing-y-4 account-table">
         <tbody>
@@ -167,6 +169,7 @@ const AccountForm = ({ preloaded }) => {
                 placeholder="Name"
                 id="name"
                 ref={register}
+                disabled={session.user.email === "guest@exotech.com"}
                 {...register("name", {
                   required: "Please enter a name",
                 })}
@@ -186,6 +189,7 @@ const AccountForm = ({ preloaded }) => {
                 placeholder="Email address"
                 id="email"
                 type="email"
+                disabled={session.user.email === "guest@exotech.com"}
                 {...register("email", {
                   required: "Please enter an email",
                   pattern: {
@@ -208,6 +212,7 @@ const AccountForm = ({ preloaded }) => {
                 className="w-full text-lg border-2 border-gray-200 py-1 px-3 rounded-md focus:outline-none focus:border-gray-500"
                 placeholder="Phone number"
                 id="mobile"
+                disabled={session.user.email === "guest@exotech.com"}
                 {...register("mobile", {
                   pattern: {
                     value: /^[0-9-()+ ]+$/i,
@@ -231,6 +236,7 @@ const AccountForm = ({ preloaded }) => {
                 placeholder="New password"
                 id="password"
                 type="password"
+                disabled={session?.user?.email === "guest@exotech.com"}
                 {...register("password", {
                   minLength: {
                     value: 8,
@@ -254,6 +260,7 @@ const AccountForm = ({ preloaded }) => {
                 placeholder="Confirm password"
                 type="password"
                 id="confirmPassword"
+                disabled={session.user.email === "guest@exotech.com"}
                 {...register("confirmPassword", {
                   validate: (value: string) => value === getValues("password"),
                 })}
