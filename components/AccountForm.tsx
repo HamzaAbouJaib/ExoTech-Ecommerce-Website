@@ -34,6 +34,7 @@ const AccountForm = ({ preloaded }) => {
   }, [openModal]);
 
   async function confirmChanges() {
+    if (session?.user?.email === "guest@exotech.com") return;
     const name = getValues("name");
     const email = getValues("email");
     const mobile = getValues("mobile");
@@ -278,7 +279,12 @@ const AccountForm = ({ preloaded }) => {
           </tr>
         </tbody>
       </table>
-      <button className="btn-primary mt-3">Save Changes</button>
+      <button
+        className="btn-primary mt-3"
+        disabled={session.user.email === "guest@exotech.com"}
+      >
+        Save Changes
+      </button>
     </form>
   );
 };
