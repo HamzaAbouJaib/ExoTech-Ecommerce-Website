@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
+import { ClipLoader } from "react-spinners";
 
 type OrderType = {
   _id?: string;
@@ -43,6 +44,17 @@ const OrderHistory = () => {
       maximumFractionDigits: 2,
     }).format(total);
   }
+
+  if (!orders)
+    return (
+      <ClipLoader
+        color={"#1e6cd9"}
+        loading={true}
+        size={100}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
+    );
 
   return (
     <div className="max-2xl:overflow-x-scroll">

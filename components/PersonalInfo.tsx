@@ -2,6 +2,7 @@ import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import AccountForm from "./AccountForm";
+import { ClipLoader } from "react-spinners";
 
 type CustomerType = {
   _id: string;
@@ -28,7 +29,17 @@ const PersonalInfo = () => {
         Personal Information
       </h1>
       <p className="text-gray-600 mb-2">Manage you personal information</p>
-      {customer && <AccountForm preloaded={customer} />}
+      {customer ? (
+        <AccountForm preloaded={customer} />
+      ) : (
+        <ClipLoader
+          color={"#1e6cd9"}
+          loading={true}
+          size={100}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      )}
     </div>
   );
 };

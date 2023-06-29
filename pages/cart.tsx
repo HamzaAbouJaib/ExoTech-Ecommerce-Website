@@ -6,10 +6,11 @@ import ProductType from "@/types/ProductType";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import Layout from "@/components/Layout";
+import { ClipLoader } from "react-spinners";
 
 export default function CartPage() {
   const { cartProducts, clearCart } = useContext(CartContext);
-  const [products, setProducts] = useState<ProductType[]>([]);
+  const [products, setProducts] = useState<ProductType[]>();
   const [domLoaded, setDomLoaded] = useState(false);
 
   useEffect(() => {
@@ -35,10 +36,20 @@ export default function CartPage() {
     <Layout>
       <div className="w-[80%] m-auto mb-10 lg:pt-20 pt-10 min-h-screen">
         <h1 className="text-3xl font-semibold mb-7 mt-20">Cart</h1>
-        <div className="grid xl:grid-cols-3 lg:gap-16 gap-10">
-          <CartItems products={products} />
-          {cartProducts.length > 0 && <OrderSummary products={products} />}
-        </div>
+        {products ? (
+          <div className="grid xl:grid-cols-3 lg:gap-16 gap-10">
+            <CartItems products={products} />
+            {cartProducts.length > 0 && <OrderSummary products={products} />}
+          </div>
+        ) : (
+          <ClipLoader
+            color={"#1e6cd9"}
+            loading={true}
+            size={100}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
+        )}
       </div>
     </Layout>
   );

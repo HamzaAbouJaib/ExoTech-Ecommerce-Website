@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import ProductType from "@/types/ProductType";
 import ProductCard from "./ProductCard";
+import { ClipLoader } from "react-spinners";
 
 const Favourites = () => {
   const { data: session } = useSession();
@@ -19,6 +20,17 @@ const Favourites = () => {
         });
     });
   }, [session, favouritesChanged]);
+
+  if (!favouriteProducts)
+    return (
+      <ClipLoader
+        color={"#1e6cd9"}
+        loading={true}
+        size={100}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
+    );
 
   return (
     <div>
