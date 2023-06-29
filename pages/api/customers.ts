@@ -31,7 +31,6 @@ export default async function handler(
 
   if (method === "PUT") {
     const { _id, name, email, mobile, password, favourite } = req.body;
-    if (email === "guest@exotech.com") return;
     let CustomerDoc;
     if (favourite) {
       CustomerDoc = await Customer.findOneAndUpdate(
@@ -39,6 +38,7 @@ export default async function handler(
         { $push: { favourites: favourite } }
       );
     } else {
+      if (email === "guest@exotech.com") return;
       if (password !== undefined) {
         CustomerDoc = await Customer.updateOne(
           { _id },
