@@ -7,8 +7,12 @@ const ProductImages = ({
   name?: string;
   images?: string[];
 }) => {
-  const [activeImage, setActiveImage] = useState(images?.[0]);
+  const [activeImage, setActiveImage] = useState<string>();
   const activeStyling = "border-primary";
+
+  useEffect(() => {
+    setActiveImage(images?.[0]);
+  }, [images]);
 
   const slideRef = useRef<HTMLDivElement>(null);
   // const [width, setWidth] = useState(0);
