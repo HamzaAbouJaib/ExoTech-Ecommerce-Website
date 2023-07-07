@@ -2,10 +2,10 @@
 # Tech Store E-commerce Website
 
 ## Overview
-This project is a mobile-responsive tech e-commerce website built using React.js, Next.js, MongoDB, Stripe, Firebase, Tailwind CSS, and Next-Auth. It provides a seamless shopping experience with features like user authentication, favoriting products, order history, a cart system, and secure payment processing using Stripe.
+This project is a mobile-responsive tech e-commerce website built using TypeScript, React.js, Next.js, MongoDB. It provides a seamless shopping experience with features like user authentication, favoriting products, order history, a cart system, and secure payment processing using Stripe.
 
 ## Deployment
-The website is being deployed on vercel at "link to site"  
+The website is being deployed on vercel. [Link to website](https://exotech.vercel.app/).    
 Guest Login and Credit Card for testing purposes:
 - Email: guest@exotech.com
 - Password: test1234
@@ -14,20 +14,24 @@ Guest Login and Credit Card for testing purposes:
 - Credit Card CVV: Any 3 digit number
 
 ## Technologies Used
+- TypeScript
 - React.js
 - Next.js
 - MongoDB
+- Mongoose
 - Stripe
 - Firebase
+- Axios
 - Tailwind CSS
 - Next-Auth
+- Yarn
 
 ## Features
 - User authentication and account management with Next-Auth.
 - MongoDB integration with Mongoose for efficient database operations.
 - Stripe payment gateway for secure and seamless checkout and payment processing.
 - Firebase Storage for storing and retrieving product images.
-- Mobile-responsive design using Tailwind CSS.
+- Mobile-responsive, user-friendly design using Tailwind CSS.
 - Cart system for adding, modifying, and removing products.
 - Favorites feature for saving and viewing preferred products.
 - Order history page for tracking and reviewing past purchases.
